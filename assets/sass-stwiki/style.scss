@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+/*!
+ * Theme Name: sentora-z
+ * Description: sentora-z theme by kitano. 
+ * Theme URI: http://sentora-z.com
+ * Author: kitano
+ * Author URI: http://sentora-z.com
+ * Version: 1.0
+*/
+
+@import "core--function";
+@import "core--reset";
+@import "core--setting";
+
+@import "layout";
+@import "object--component";
+@import "object--project";
+@import "object--utility";
