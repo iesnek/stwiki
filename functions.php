@@ -16,6 +16,13 @@
 
 ////////// 基本設定 //////////
 
+// Javascriptの読み込み
+ function my_scripts() {
+    wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'script',get_template_directory_uri().'/assets/js/script.js',array('jquery'));
+  }
+    add_action( 'wp_enqueue_scripts', 'my_scripts' );
+
 // メインカラムの幅を指定
 if ( ! isset( $content_width ) ) $content_width = 750;
 

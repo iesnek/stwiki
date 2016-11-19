@@ -7,10 +7,12 @@
 // アサノハ柄
 // ヘッダーバー
 // ヘッダー
+// メニューボタン
 // ナビゲーション
 // 新着情報
 // メインバナー
 // データベースメニュー
+// メニュー | サイドカラム
 // フッター
 
 ////////// アサノハ柄 //////////
@@ -31,7 +33,7 @@
   margin: 0 auto;
 }
 .headBar_title{
-  padding-top: 0.9rem;
+  padding-top: 0.75rem;
   font-size: 1.4rem;
   font-weight: bold;
   color: $clr_c5;
@@ -50,11 +52,34 @@
     border-radius: 2px;
     margin-left: 0.5rem;
     line-height: 0;
+    @include media(sl_tp) {
+      padding: 0 0 0 2rem;
+      margin-left: 2rem;
+      position: relative;
+      display: block;
+      background: none;
+      color: $clr_c5;
+      text-decoration: none;
+    }
   }
   svg{
     fill: $clr_c3;
     width: 1.5rem;
     height: 1.5rem;
+    @include media(sl_tp) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      fill: $clr_c5;
+    }
+  }
+  p{
+    display: none;
+    @include media(sl_tp) {
+      display: block;
+    }
   }
 }
 
@@ -118,6 +143,16 @@
     font-size: 1.2rem;
     background-color: $clr_c5;
     color: $clr_c2;
+  }
+}
+
+
+////////// メニューボタン //////////
+.menuBtn{
+  svg{
+    fill: $clr_c5;
+    width: 3rem;
+    height: 3rem;
   }
 }
 
@@ -250,7 +285,7 @@
   }
   a{
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     display: block;
     color: $clr_c2;
     text-decoration: none;
@@ -286,6 +321,85 @@
   &:before{ background-color: $clr_a5; }
   a:after,a:before{ border-color: $clr_a5; }
   li{ background-color: $clr_c5; }
+}
+
+
+////////// メニュー | サイドカラム //////////
+.subHead{
+  padding: 2rem 0 1rem 0;
+  text-align: center;
+  background-color: $clr_c1;
+  img{
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+.subHead_btn{
+  a{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    height: 4rem;
+    font-size: 1.6rem;
+    line-height: (4 / 1.6);
+    text-decoration: none;
+    color: $clr_c5;
+    text-align: center;
+    position: relative;
+  }
+  svg{
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    bottom: 0;
+    margin: auto;
+    fill: $clr_c5;
+  }
+}
+.subHead_write a{ background-color: $clr_a1; }
+.subHead_login a{ background-color: $clr_a3; }
+.subNav_wrap{
+  margin-top: 2rem;
+}
+.subNav{
+  padding-bottom: 0 !important;
+}
+.subNav_parent{
+  position: relative;
+  text-indent: 4rem;
+  line-height: 4rem !important;
+  &:before{
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 6rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  svg{
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    bottom: 0;
+    margin: auto;
+    fill: $clr_c5;
+  }
+}
+.subNav_buki > a:before, .subNav_buki a.mm-subopen{ background-color: $clr_a1; }
+.subNav_bogu > a:before, .subNav_bogu a.mm-subopen{ background-color: $clr_a2; }
+.subNav_irui > a:before, .subNav_irui a.mm-subopen{ background-color: $clr_a3; }
+.subNav_fuda > a:before, .subNav_fuda a.mm-subopen{ background-color: $clr_a4; }
+.subNav_make > a:before, .subNav_make a.mm-subopen{ background-color: $clr_a5; }
+
+.subNav_other{
+  background-color: $clr_c3;
 }
 
 

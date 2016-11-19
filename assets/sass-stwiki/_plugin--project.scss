@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+////////// プラグインモジュール //////////
+
+
+////////// 目次 //////////
+// MMENUの中
+// MW WP Form
+
+
+////////// MMENUの中 //////////
+.mm-menu > .mm-panel{
+  padding: 0;
+}
+.mm-panel > .mm-list {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// searchform
+.mm-search{
+  width: 90%;
+  margin: 2rem auto 0;
+}
+.mm-search form {
+  background-color: #333;
+}
+.mm-search #searchsubmit {
+  display: none;
+}
+
+// バナーの調整
+.mm-panel .bnr{
+  width: 90%;
+  margin: 1rem auto;
+}
+
+
+////////// MMENUの中その３　タップで閉じる //////////
+.mm-tapClose{
+  display: none;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba( $clr_c1, 0.6 );
+}
+.mm-opened .mm-tapClose{
+  display: block;
+  opacity: 1;
+  -webkit-animation-duration: 2.0s;
+  -webkit-animation-name: fade-in;
+  animation-duration: 2.0s;
+  animation-name: fade-in;
+  background-image: url(assets/img/mm-close.png);
+  background-size: auto 30%;
+  background-repeat: no-repeat;
+  background-position: left 3% center;
+}
+@-webkit-keyframes fade-in {
+  0% { display: none; opacity: 0; }
+  1% { display: block; opacity: 0; }
+  100% { display: block; opacity: 1; }
+}
+@keyframes fade-in {
+  0% { display: none; opacity: 0; }
+  1% { display: block; opacity: 0; }
+  100% { display: block; opacity: 1; }
+}
