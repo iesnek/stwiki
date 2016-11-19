@@ -8,7 +8,7 @@
 // バナー
 // 右矢印(>)
 // ページトップバー
-
+// アサノハ柄
 
 ////////// 見出し //////////
 .headline{
@@ -30,6 +30,10 @@
   font-weight: bold;
   font-size: 1.6rem;
   color: $clr_c5;
+  @include media(pc) {
+    font-size: 1.8rem;
+    padding: 3rem 0;
+  }
 }
 
 ////////// 右矢印(>) //////////
@@ -50,6 +54,10 @@
     right: 1.5rem;
     bottom: 0;
     margin: auto;
+    @include media(pc) {
+      right: 2.5rem;
+      transition: 0.2s;
+    }
   }
   &:before{
     border-top: solid 2px $clr_c5;
@@ -59,6 +67,11 @@
     -webkit-transform: rotate(-50deg);
     -o-transform: rotate(-50deg);
     transform: rotate(-50deg);
+  }
+  @include media(pc) {
+    &:hover:before, &:hover:after{
+      right: 1.5rem;
+    }
   }
 }
 
@@ -99,5 +112,14 @@
       -o-transform: rotate(-50deg);
       transform: rotate(-50deg);
     }
+  }
+}
+
+
+////////// アサノハ柄 //////////
+.asanoha{
+  background:{
+    image: $svg-asanoha;
+    repeat: repeat;
   }
 }

@@ -4,7 +4,6 @@
 
 
 ////////// 目次 //////////
-// アサノハ柄
 // ヘッダーバー
 // ヘッダー
 // メニューボタン
@@ -15,22 +14,9 @@
 // メニュー | サイドカラム
 // フッター
 
-////////// アサノハ柄 //////////
-.asanoha{
-  background:{
-    image: $svg-asanoha;
-    repeat: repeat;
-  }
-}
-
 ////////// ヘッダーバー //////////
 .headBar{
-  width: 100%;
   background-color: $clr_c3;
-}
-.headBar_wrap{
-  width: 95%;
-  margin: 0 auto;
 }
 .headBar_title{
   padding-top: 0.75rem;
@@ -85,7 +71,7 @@
 
 
 ////////// ヘッダー //////////
-.head_wrap{
+.header{
   background-color: $clr_c1;
 }
 .head_logo{
@@ -95,10 +81,22 @@
     width: 9rem;
     height: auto;
     margin: 0 auto;
+    @include media(pc) {
+      width: 360px;
+      height: 140px;
+      margin: 0;
+      padding: 2rem 0 3rem;
+    }
   }
 }
 .head_cvr{
-  background-color: $clr_c2;
+  background-color: $clr_c1;
+  > div{
+    @include media(pc) {
+      width: 1150px;
+      margin: 0 auto;
+    }
+  }
   img{
     width: 100%;
   }
@@ -106,12 +104,23 @@
 .head_bnr{
   background-color: $clr_c2;
   padding: 1rem 0;
+  @include media(pc) {
+    padding: 0;
+  }
   a{
     width: 95%;
     display: table;
     text-decoration: none;
     margin: 0 auto;
     height: 5rem;
+    @include media(pc) {
+      width: 450px;
+      height: 6rem;
+      transition: 0.3s;
+      &:hover{
+        opacity: 0.7;
+      }
+    }
   }
   h2{
     display: table-cell;
@@ -122,17 +131,24 @@
     background-color: $clr_m;
     color: $clr_c5;
     position: relative;
+    @include media(pc) {
+      width: 30%;
+    }
     &:after{
-    display: block;
-    content: '';
-    width: 0;
-    height: 0;
-    border-top: 2.5rem solid transparent;
-    border-bottom: 2.5rem solid transparent;
-    border-left: 10px solid $clr_m;
-    position: absolute;
-    top: 0;
-    left: 100%;
+      display: block;
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 2.5rem solid transparent;
+      border-bottom: 2.5rem solid transparent;
+      border-left: 10px solid $clr_m;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      @include media(pc) {
+        border-top: 3rem solid transparent;
+        border-bottom: 3rem solid transparent;
+      }
     }
   }
   p{
@@ -143,6 +159,10 @@
     font-size: 1.2rem;
     background-color: $clr_c5;
     color: $clr_c2;
+    @include media(pc) {
+      width: 70%;
+      font-size: 1.4rem;
+    }
   }
 }
 
@@ -169,6 +189,11 @@
   border-top: 3px solid $clr_s;
   border-bottom: 3px solid $clr_s;
   background-color: $clr_c1;
+  @include media(pc) {
+    border-top: 1px solid $clr_s;
+    border-bottom: 1px solid $clr_s;
+    background: none;
+  }
   li{
     width: 20%;
     &:before,&:after{
@@ -184,6 +209,9 @@
       top: 0;
       bottom: 0;
       margin: auto;
+      @include media(pc) {
+
+      }
     }
     &:after{
       -webkit-transform: rotate(15deg);
@@ -205,12 +233,25 @@
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
+    @include media(pc) {
+      font-size: 1.5rem;
+    }
   }
   svg{
     margin-bottom: 0.1rem;
     fill: $clr_c5;
     width: 2rem;
     height: 2rem;
+  }
+}
+@include media(pc) {
+  .nav li{
+    a, svg{ transition: 0.2s; }
+    &:first-child{ a:hover{ color: $clr_s; } a:hover svg{ fill: $clr_s; }}
+    &:nth-child(2){ a:hover{ color: $clr_a1; } a:hover svg{ fill: $clr_a1; }}
+    &:nth-child(3){ a:hover{ color: $clr_a2; } a:hover svg{ fill: $clr_a2; }}
+    &:nth-child(4){ a:hover{ color: $clr_a3; } a:hover svg{ fill: $clr_a3; }}
+    &:nth-child(5){ a:hover{ color: $clr_a4; } a:hover svg{ fill: $clr_a4; }}
   }
 }
 
@@ -222,12 +263,20 @@
   li{
     border-top: 1px solid $clr_c4;
     padding: 0.5rem 0;
+    @include media(pc) {
+      padding: 1rem 0;
+    }
     &:first-child{
       border-top: none;
     }
     a{
       text-decoration: none;
       color: $clr_m;
+      @include media(pc) {
+        &:hover{
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
@@ -250,6 +299,9 @@
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   border: 1px solid $clr_c4;
   border-radius: 3px;
+  @include media(pc) {
+    padding: 1rem 1rem 1rem 1.5rem;
+  }
   &:before{
     content: '';
     display: block;
@@ -268,20 +320,17 @@
   align-items: center;
   -webkit-flex-wrap: wrap;
   flex-wrap:         wrap;
+  }
+  > ul{
   border-top: 1px solid $clr_c4;
   border-left: 1px solid $clr_c4;
   box-sizing: border-box;
   }
   li{
-    width: 33.33%;
     border-right: 1px solid $clr_c4;
     border-bottom: 1px solid $clr_c4;
     border-collapse: collapse;
     box-sizing: border-box;
-  &:first-child{
-    -webkit-flex-basis: 100%;
-    flex-basis:         100%;
-  }
   }
   a{
     width: 100%;
@@ -291,36 +340,83 @@
     text-decoration: none;
     font-weight: bold;
     text-align: center;
+    @include media(sl_tp) {
+      padding: 2rem 0;
+    }
   }
-}.dbMenu_buki{
+}
+.dbMenu_parent{
+  -webkit-flex-basis: 100%;
+  flex-basis:         100%;
+  @include media(sl_tp) {
+    -webkit-flex-basis: 25%;
+    flex-basis:         25%;
+    a{
+      padding: 5.2rem 0;
+    }
+  }
+  @include media(tl) {
+    a{ padding: 5.3rem 0; }
+  }
+  @include media(pc) {
+    a{ padding: 5.4rem 0; }
+  }
+}
+.dbMenu_bogu .dbMenu_parent a{
+  @include media(sl_tp) {
+    padding: 8.4rem 0;
+  }
+  @include media(tl) {
+    padding: 8.6rem 0;
+  }
+  @include media(pc) {
+    padding: 8.8rem 0;
+  }
+}
+.dbMenu_make .dbMenu_parent a{
+  @include media(pc) {
+    padding: 4.1rem 0;
+  }
+}
+.dbMenu_child{
+  width: 100%;
+  @include media(sl_tp) {
+    -webkit-flex-basis: 75%;
+    flex-basis:         75%;
+  }
+  li{
+    width: 33.33%;
+  }
+}
+.dbMenu_buki{
   background-color: rgba($clr_a1, 0.1);
   &:before{ background-color: $clr_a1; }
   a:after,a:before{ border-color: $clr_a1; }
-  li{ background-color: $clr_c5; }
+  a{ background-color: $clr_c5; }
 }
 .dbMenu_bogu{
   background-color: rgba($clr_a2, 0.1);
   &:before{ background-color: $clr_a2; }
   a:after,a:before{ border-color: $clr_a2; }
-  li{ background-color: $clr_c5; }
+  a{ background-color: $clr_c5; }
 }
 .dbMenu_irui{
   background-color: rgba($clr_a3, 0.1);
   &:before{ background-color: $clr_a3; }
   a:after,a:before{ border-color: $clr_a3; }
-  li{ background-color: $clr_c5; }
+  a{ background-color: $clr_c5; }
 }
 .dbMenu_fuda{
   background-color: rgba($clr_a4, 0.1);
   &:before{ background-color: $clr_a4; }
   a:after,a:before{ border-color: $clr_a4; }
-  li{ background-color: $clr_c5; }
+  a{ background-color: $clr_c5; }
 }
 .dbMenu_make{
   background-color: rgba($clr_a5, 0.1);
   &:before{ background-color: $clr_a5; }
   a:after,a:before{ border-color: $clr_a5; }
-  li{ background-color: $clr_c5; }
+  a{ background-color: $clr_c5; }
 }
 
 
@@ -368,18 +464,13 @@
 }
 .subNav_parent{
   position: relative;
+  border-left: 0.5rem solid $clr_c1;
   text-indent: 4rem;
   line-height: 4rem !important;
-  &:before{
-    content: '';
-    display: block;
-    width: 0.5rem;
-    height: 6rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
+  @include media(pc) {
+    text-indent: 0.5rem;
+    font-weight: bold;
+    border: 0;
   }
   svg{
     width: 2.5rem;
@@ -390,17 +481,100 @@
     bottom: 0;
     margin: auto;
     fill: $clr_c5;
+    @include media(pc) {
+      width: 2rem;
+      height: 2rem;
+      left: 1rem;
+    }
   }
 }
-.subNav_buki > a:before, .subNav_buki a.mm-subopen{ background-color: $clr_a1; }
-.subNav_bogu > a:before, .subNav_bogu a.mm-subopen{ background-color: $clr_a2; }
-.subNav_irui > a:before, .subNav_irui a.mm-subopen{ background-color: $clr_a3; }
-.subNav_fuda > a:before, .subNav_fuda a.mm-subopen{ background-color: $clr_a4; }
-.subNav_make > a:before, .subNav_make a.mm-subopen{ background-color: $clr_a5; }
+.subNav_buki > a{ border-color: $clr_a1; }
+.subNav_bogu > a{ border-color: $clr_a2; }
+.subNav_irui > a{ border-color: $clr_a3; }
+.subNav_fuda > a{ border-color: $clr_a4; }
+.subNav_make > a{ border-color: $clr_a5; }
+
+@include media(pc) {
+  .subNav_buki svg{ fill: $clr_a1; }
+  .subNav_bogu svg{ fill: $clr_a2; }
+  .subNav_irui svg{ fill: $clr_a3; }
+  .subNav_fuda svg{ fill: $clr_a4; }
+  .subNav_make svg{ fill: $clr_a5; }
+}
+@include media(pc) {
+  .subNav_list{
+    margin-top: 1rem;
+    border-left: 1px solid $clr_c4;
+    border-top: 1px solid $clr_c4;
+    a{
+      display: block;
+      padding-left: 3rem;
+      box-sizing: border-box;
+      width: 100%;
+      border-right: 1px solid $clr_c4;
+      border-bottom: 1px solid $clr_c4;
+      text-decoration: none;
+      color: $clr_c2;
+    }
+  }
+  .subNav_buki{ border-left: 0.5rem solid $clr_a1; }
+  .subNav_bogu{ border-left: 0.5rem solid $clr_a2; }
+  .subNav_irui{ border-left: 0.5rem solid $clr_a3; }
+  .subNav_fuda{ border-left: 0.5rem solid $clr_a4; }
+  .subNav_make{ border-left: 0.5rem solid $clr_a5; }
+  .subNav_buki{ a:before, a:after { border-color: $clr_a1; } }
+  .subNav_bogu{ a:before, a:after { border-color: $clr_a2; } }
+  .subNav_irui{ a:before, a:after { border-color: $clr_a3; } }
+  .subNav_fuda{ a:before, a:after { border-color: $clr_a4; } }
+  .subNav_make{ a:before, a:after { border-color: $clr_a5; } }
+}
 
 .subNav_other{
   background-color: $clr_c3;
 }
+
+// PC検索フォーム
+.search{
+  form{
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+  #s{
+    padding-left: 10px;
+    width: 290px;
+    height: 40px;
+    border: 2px solid $clr_c4;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 0;
+  }
+  #searchsubmit{
+    position: absolute;
+    top: 0;
+    _top: 1px;
+    left: 296px;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid $clr_c4;
+    background-color: $clr_c2;
+    background-image: $svg-search;
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 0;
+    &:hover{
+      background-color: rgba($clr_c2, 0.7);
+    }
+  }
+  *:first-child + html #searchsubmit{
+    top: 1px;
+  }
+}
+
 
 
 ////////// フッター //////////
@@ -408,6 +582,25 @@
   padding: 2rem 0 7rem 0;
   width: 100%;
   background-color: $clr_c1;
+  @include media(pc) {
+    padding: 4rem 0;
+  }
+}
+.footNav{
+  text-align: center;
+  margin-bottom: 2rem;
+  li{
+    display: inline-block;
+    margin: 0 2rem;
+  }
+  a{
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: $clr_c5;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
 }
 .copyright{
   text-align: center;

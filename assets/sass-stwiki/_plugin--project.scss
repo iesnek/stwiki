@@ -35,6 +35,14 @@
   margin: 1rem auto;
 }
 
+// 配色
+.subNav_buki a.mm-subopen{ background-color: $clr_a1; }
+.subNav_bogu a.mm-subopen{ background-color: $clr_a2; }
+.subNav_irui a.mm-subopen{ background-color: $clr_a3; }
+.subNav_fuda a.mm-subopen{ background-color: $clr_a4; }
+.subNav_make a.mm-subopen{ background-color: $clr_a5; }
+
+
 
 ////////// MMENUの中その３　タップで閉じる //////////
 .mm-tapClose{
