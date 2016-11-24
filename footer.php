@@ -1,7 +1,7 @@
 <footer id="footer" class="l-footer">
   <div class="pagetopBar asanoha"><a id="pagetopBtn" href="#"><span>ページトップへ戻る</span></a></div><!-- .pagetopBar bg_asanoha -->
   <div class="foot_wrap">
-  <?php if ( function_exists( 'is_multi_device' ) ): //PCの場合
+  <?php if ( function_exists( 'is_multi_device' ) )://PCの場合
     if ( !is_multi_device('smart') && !is_multi_device('tablet') ): ?>
     <ul class="footNav">
       <li><a href="">ホーム</a></li>

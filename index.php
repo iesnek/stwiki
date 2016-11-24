@@ -94,10 +94,10 @@
 
   <section class="l-block dbMenu dbMenu_make">
     <ul class="arrow">
-<?php if ( function_exists( 'is_multi_device' ) ): //スマホかタブレットの場合
+<?php if ( function_exists( 'is_multi_device' ) )://スマホかタブレットの場合
   if ( is_multi_device('smart') || is_multi_device('tablet') ): ?>
     <li class="dbMenu_parent"><a href="">すべてのキャラメイク</a></li>
-<?php else: ?>
+<?php else: //そうじゃない場合 ?>
     <li class="dbMenu_parent"><a href="">すべての<br>キャラメイク</a></li>
 <?php endif; endif; ?>
       <li class="dbMenu_child u-bd0">

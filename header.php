@@ -7,12 +7,16 @@
 
 <?php get_template_part('meta'); ?>
 
+  <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/fav.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/fav.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/assets/img/webclip.png" />
+
+  <link rel="stylesheet" id="style.css-css"  href="<?php echo get_stylesheet_uri(); ?>" media="all" />
+
   <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" media="all" />
 
 <?php if ( is_singular() ) { wp_enqueue_script( "comment-reply" ); } ?>
-
 <?php get_template_part('ogp');?>
-
 <?php wp_head(); ?>
 
 <!-- MMENU -->
@@ -50,14 +54,12 @@
   <div class="l-head_wrap">
     <div class="head_logo"><a href="<?php echo home_url('/'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.jpg" alt="戦国の虎z 攻略&データベースwiki"></a></div><!-- .head_logo -->
 
-<?php if ( function_exists( 'is_multi_device' ) ):
-  if ( !is_multi_device('smart') && !is_multi_device('tablet') ): //PCの場合 ?>
-
+<?php if ( function_exists( 'is_multi_device' ) )://PCの場合
+  if ( !is_multi_device('smart') && !is_multi_device('tablet') ): ?>
     <div class="l-head_bnr head_bnr"><a href="">
       <h2>wikiを編集</h2>
       <p>『戦国の虎z 攻略＆データベースwiki』は<br>　誰でも編集できる情報共有サイトです</p>
     </a></div>
-
 <?php endif; endif; ?>
 
     <nav class="l-nav">
@@ -79,15 +81,12 @@
          alt="戦国の虎z">
   </div></div>
 
-<?php if ( function_exists( 'is_multi_device' ) ):
-  if ( is_multi_device('smart') || is_multi_device('tablet') ): //スマホかタブレットの場合 ?>
-
+<?php if ( function_exists( 'is_multi_device' ) )://スマホかタブレットの場合
+  if ( is_multi_device('smart') || is_multi_device('tablet') ): ?>
   <div class="head_bnr asanoha"><a href="">
     <h2>wikiを編集</h2>
     <p>『戦国の虎z 攻略＆データベースwiki』 は誰でも編集できる情報共有サイトです</p>
   </a></div>
-
 <?php endif; endif; ?>
-
 
 </header><!-- #header .l-header -->

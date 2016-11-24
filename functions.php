@@ -5,13 +5,10 @@
 //アーカイブページで現在のカテゴリー・タグ・タームを取得する
 //ログイン画面のロゴ変更
 //投稿記事一覧にアイキャッチ画像を表示
-//条件分岐タグ「is_first_post」を定義
 //アーカイブにカスタム投稿タイプを表示
-//いろいろな犬種アーカイブページの表示変更
-//カスタム投稿タイプ-いろいろな犬種
-//カスタムフィールド-いろいろな犬種
-//カスタム投稿タイプ-動画紹介
-//カスタムフィールド-動画紹介
+//カスタム投稿タイプ-データベース
+//管理画面に任意のCSSを読み込ませる
+//管理画面のカテゴリーの追加ボタンを消す
 
 
 ////////// 基本設定 //////////
@@ -34,8 +31,7 @@ function mysite_feed_request($vars) {
   if ( isset($vars['feed']) && !isset($vars['post_type']) ){
     $vars['post_type'] = array(
       'post',
-      'mov',
-      'dogs'
+      'db'
     );
   }
   return $vars;
@@ -46,9 +42,7 @@ add_filter( 'request', 'mysite_feed_request' );
 add_theme_support( 'post-thumbnails' );
 
 // アイキャッチ画像のサイズ追加
-add_image_size( 'thumbnail2', 330, 220, true );
-add_image_size( 'thumbnail3', 240, 160, true );
-add_image_size( 'thumbnail4', 120, 80, true );
+add_image_size( 'fuda', 450, 564, true );
 
 // 抜粋文の末尾の文字を変更[...]→...
 function new_excerpt_more($more){
@@ -101,10 +95,10 @@ function get_current_term(){
 function login_logo() {
 echo '<style type="text/css">
 #login h1 a {
-background: url('.get_template_directory_uri().'/svg/logo-h.png) no-repeat;
-width: 250px;
-height: 50px;
-background-size:100% auto;
+background: url('.get_template_directory_uri().'/assets/img/defaultImg.png) no-repeat;
+width: 300px;
+height: 200px;
+background-size:contain;
 }
 </style>';
 }
@@ -131,72 +125,48 @@ add_filter( 'manage_posts_columns', 'customize_admin_manage_posts_columns' );
 add_action( 'manage_posts_custom_column', 'customize_admin_add_column', 10, 2 );
 
 
-////////// 条件分岐タグ「is_first_post」を定義 //////////
-function is_first_post(){
-  global $wp_query;
-  return ($wp_query->current_post === 0);
-}
-
-
 ////////// アーカイブにカスタム投稿タイプを表示 //////////
 function set_post_per_page( $query ) {
   if ( is_admin() || !$query->is_main_query() )
     return;
 
-  if ( $query->is_post_type_archive( 'dogs' ) ) {
+  if ( $query->is_post_type_archive( 'db' ) ) {
     return;
   }
 
   if ( $query->is_home() || $query->is_archive() ) {
-    $query->set( 'post_type', array( 'post', 'mov' ) );
+    $query->set( 'post_type', array( 'post', 'db' ) );
     return;
   }
 }
 add_action( 'pre_get_posts', 'set_post_per_page' );
 
 
-////////// いろいろな犬種アーカイブページの表示変更 //////////
-function change_posts_per_page($query) {
-    if ( is_admin() || ! $query->is_main_query() )
-        return;
+////////// カスタム投稿タイプ-データベース //////////
+add_action( 'init', 'register_cpt_db' );
 
-    if ( $query->is_post_type_archive( 'dogs' ) ) {
-        $query->set( 'posts_per_page', '12' );
-        $query->set( 'orderby', 'meta_value' );
-        $query->set( 'meta_key', 'dogs_yomi' );
-        $query->set( 'order', 'asc' );
-    }
-}
-add_action( 'pre_get_posts', 'change_posts_per_page' );
-
-
-////////// カスタム投稿タイプ-いろいろな犬種 //////////
-
-add_action( 'init', 'register_cpt_dogs' );
-
-function register_cpt_dogs() {
+function register_cpt_db() {
 
   $labels = array( 
-    'menu_name'          => _x( 'いろいろな犬種', 'dogs' ),    //サイドメニューのラベル
-    'all_items'          => _x( '犬種一覧', 'dogs' ),        //サイドメニューの一覧ラベル
-    'add_new'            => _x( '新規追加', 'dogs' ),        //サイドメニューの新規ラベル
-    'name'               => _x( 'いろいろな犬種', 'dogs' ),    //いろいろな犬種画面のタイトル
-    'singular_name'      => _x( 'いろいろな犬種', 'dogs' ),    //よくわからん
-    'add_new_item'       => _x( '新しい犬種を追加', 'dogs' ),  //新規追加ページのタイトル
-    'edit_item'          => _x( '犬種を編集', 'dogs' ),       //編集ページのタイトル
-    'new_item'           => _x( '新しい犬種', 'dogs' ),       //よくわからん
-    'search_items'       => _x( '犬種を検索', 'dogs' ),       //検索する時
-    'not_found'          => _x( '見つかりませんでした', 'dogs' ), //投稿が無い時
-    'not_found_in_trash' => _x( '見つかりませんでした', 'dogs' ), //ゴミ箱にも投稿が無い時
-    'parent_item_colon'  => _x( '親犬種', 'dogs' ),
+    'menu_name'          => _x( 'データベース', 'db' ),    //サイドメニューのラベル
+    'all_items'          => _x( '装備一覧', 'db' ),        //サイドメニューの一覧ラベル
+    'add_new'            => _x( '新規追加', 'db' ),        //サイドメニューの新規ラベル
+    'name'               => _x( 'データベース', 'db' ),    //データベース画面のタイトル
+    'singular_name'      => _x( 'データベース', 'db' ),    //よくわからん
+    'add_new_item'       => _x( '装備を登録', 'db' ),  //新規追加ページのタイトル
+    'edit_item'          => _x( '情報を編集', 'db' ),       //編集ページのタイトル
+    'new_item'           => _x( '新しい装備', 'db' ),       //よくわからん
+    'search_items'       => _x( '検索', 'db' ),       //検索する時
+    'not_found'          => _x( '見つかりませんでした', 'db' ), //投稿が無い時
+    'not_found_in_trash' => _x( '見つかりませんでした', 'db' ), //ゴミ箱にも投稿が無い時
+    'parent_item_colon'  => _x( 'Parent Item', 'db' ),
   );
 
   $args = array( 
     'labels'       => $labels,
     'hierarchical' => false,  //階層ありならtrue（固定ページぽく） or 階層無しならfalse（投稿ぽく）
 
-    'supports' => array( 'title', 'editor', 'thumbnail' ),
-    'taxonomies' => array( 'post_tag' ),  //通常のタグを使う
+    'supports' => array( 'title', 'thumbnail' ),
 
     'public'       => true,
     'show_ui'      => true,
@@ -213,162 +183,82 @@ function register_cpt_dogs() {
     'capability_type'     => 'post'
   );
 
-  register_post_type( 'dogs', $args );
+  register_post_type( 'db', $args );
 }
+
+//カスタムタクソノミーを追加
+register_taxonomy(
+  'db_taxonomy',  // 追加するタクソノミー名（英小文字とアンダースコアのみ）
+  'db',  // どのカスタム投稿タイプに追加するか
+  array(
+    'label' => 'カテゴリー',  // 管理画面上に表示される名前（投稿で言うカテゴリー）
+    'labels' => array(
+      'all_items' => 'カテゴリー一覧',  // 投稿画面の右カラムに表示されるテキスト（投稿で言うカテゴリー一覧）
+      'add_new_item' => 'カテゴリーを追加'  // 投稿画面の右カラムに表示されるカテゴリ追加リンク
+    ),
+    'hierarchical' => true  // タクソノミーを階層化するか否か（子カテゴリを作れるか否か）
+  )
+);
 
 //カスタム投稿タイプのアイコン変更
 //https://developer.wordpress.org/resource/dashicons/　からアイコン選ぶ
-function dogs_icons_styles(){
+function db_icons_styles(){
    echo '<style>
-    #adminmenu #menu-posts-dogs div.wp-menu-image:before {
-      content: "\f511";
+    #adminmenu #menu-posts-db div.wp-menu-image:before {
+      content: "\f495";
     }
    </style>';
 }
-add_action( 'admin_head', 'dogs_icons_styles' );
+add_action( 'admin_head', 'db_icons_styles' );
 
 
-////////// カスタムフィールド-いろいろな犬種 //////////
-
-///// カスタムフィールドを追加
-function add_dogs_field() {  //メタボックスのID,メタボックス名,メタボックスの関数名,表示する場所
-  add_meta_box('dogs_subtitle_box', 'ソート用読み仮名＆サブタイトル', 'dogs_subtitle_form', 'dogs');
-}
-add_action('add_meta_boxes', 'add_dogs_field');
-
-//第3パラメータで指定した関数の作成
-function dogs_subtitle_form() {  //「サブタイトル」メタボックスに表示する内容
-  global $post;  //編集中の記事に関するデータを保存
-  wp_nonce_field(wp_create_nonce(__FILE__), 'my_nonce');  //CSRF対策の設定（フォームにhiddenフィールドとして追加するためのnonceを「'my_nonce」として設定）
-?>
-  <p><label>読み仮名　　　<input type="text" name="dogs_yomi" value="<?php echo esc_html(get_post_meta($post->ID, 'dogs_yomi', true)); ?>" style="width:50%" /></label></p>
-  <p><label>サブタイトル<br><input type="text" name="dogs_subtitle" value="<?php echo esc_html(get_post_meta($post->ID, 'dogs_subtitle', true)); ?>" style="width:100%" /></label></p>
-<?php
-}
-
-///// カスタムフィールドの値を保存
-function dogs_customfields_save($post_id) {
-  global $post;  //編集中の記事に関するデータを保存
-  $my_nonce = isset($_POST['my_nonce']) ? $_POST['my_nonce'] : null;  //設定したnonce を取得（CSRF対策）
-  if(!wp_verify_nonce($my_nonce, wp_create_nonce(__FILE__))) {  //nonce を確認し、値が書き換えられていれば、何もしない（CSRF対策）
-    return $post_id;
-  }
-  if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) { return $post_id; }
-  //自動保存ルーチンかどうかチェック。そうだった場合は何もしない（記事の自動保存処理として呼び出された場合の対策）
-  if(!current_user_can('edit_post', $post->ID)) { return $post_id; }
-  //ユーザーが編集権限を持っていない場合は何もしない。
-  if($_POST['post_type'] == 'dogs'){  //'dogs' 投稿タイプの場合のみ実行  
-  //入力フィールドに入力された情報を保存＆更新するように指定
-    update_post_meta($post->ID, 'dogs_yomi', $_POST['dogs_yomi']);
-    update_post_meta($post->ID, 'dogs_subtitle', $_POST['dogs_subtitle']);
-  }
-}
-add_action('save_post', 'dogs_customfields_save');
-
-
-/////カスタムフィールドを投稿より上に表示(admin-script.js必須)
-function dogs_enqueue_scripts() {
-  wp_enqueue_script('my-admin-script', get_bloginfo('template_directory').'/js/admin-script.js', array('jquery'), false, true);
-  echo '<style> #dogs_subtitle_box { margin-top: 20px; } </style>';
-}
-add_action('admin_enqueue_scripts', 'dogs_enqueue_scripts');
-
-
-////////// カスタム投稿タイプ-動画紹介 //////////
-
-add_action( 'init', 'register_cpt_mov' );
-
-function register_cpt_mov() {
-
-  $labels = array( 
-    'menu_name'          => _x( '動画紹介記事', 'mov' ),    //サイドメニューのラベル
-    'all_items'          => _x( '動画紹介記事一覧', 'mov' ),        //サイドメニューの一覧ラベル
-    'add_new'            => _x( '新規追加', 'mov' ),        //サイドメニューの新規ラベル
-    'name'               => _x( '動画紹介', 'mov' ),    //動画紹介画面のタイトル
-    'singular_name'      => _x( '動画紹介', 'mov' ),    //よくわからん
-    'add_new_item'       => _x( '新しい記事を追加', 'mov' ),  //新規追加ページのタイトル
-    'edit_item'          => _x( '記事を編集', 'mov' ),       //編集ページのタイトル
-    'new_item'           => _x( '新しい記事', 'mov' ),       //よくわからん
-    'search_items'       => _x( '動画紹介記事を検索', 'mov' ),       //検索する時
-    'not_found'          => _x( '見つかりませんでした', 'mov' ), //投稿が無い時
-    'not_found_in_trash' => _x( '見つかりませんでした', 'mov' ), //ゴミ箱にも投稿が無い時
-    'parent_item_colon'  => _x( '親記事', 'mov' ),
-  );
-
-  $args = array( 
-    'labels'       => $labels,
-    'hierarchical' => false,  //階層ありならtrue（固定ページぽく） or 階層無しならfalse（投稿ぽく）
-
-    'supports'   => array( 'title', 'editor', 'thumbnail', 'comments' ),
-    'taxonomies' => array( 'category', 'post_tag' ),  //通常のカテゴリーとタグを使う
-
-    'public'       => true,
-    'show_ui'      => true,
-    'show_in_menu' => true,
-
-
-    'show_in_nav_menus'   => true,
-    'publicly_queryable'  => true,
-    'exclude_from_search' => false,
-    'has_archive'         => true,  //アーカイブするかどうか
-    'query_var'           => true,
-    'can_export'          => true,
-    'rewrite'             => true,
-    'capability_type'     => 'post'
-  );
-
-  register_post_type( 'mov', $args );
-}
-
-add_action('init', 'my_add_default_boxes');
-
-function my_add_default_boxes() {  //通常のカテゴリーとタグを使う
-  register_taxonomy_for_object_type('category', 'mov');
-  register_taxonomy_for_object_type('post_tag', 'mov');
-}
-
-
-//カスタム投稿タイプのアイコン変更
-//https://developer.wordpress.org/resource/dashicons/　からアイコン選ぶ
-function mov_icons_styles(){
-   echo '<style>
-    #adminmenu #menu-posts-mov div.wp-menu-image:before {
-      content: "\f126";
-    }
-   </style>';
-}
-add_action( 'admin_head', 'mov_icons_styles' );
-
-
-////////// カスタムフィールド-動画紹介 //////////
-
-///// カスタムフィールドを追加
-function add_mov_field() {  //メタボックスのID,メタボックス名,メタボックスの関数名,表示する場所
-  add_meta_box('mov_note', 'コピペ用HTMLタグ', 'mov_note_form', 'dogs', 'side', 'low');
-  add_meta_box('mov_note', 'コピペ用HTMLタグ', 'mov_note_form', 'mov', 'side', 'low');
-}
-add_action('add_meta_boxes', 'add_mov_field');
-
-function mov_note_form() {  //「コピペ用HTMLタグ」メタボックスに表示する内容
-?>
-  <div class="m-articleBody">
-    <p><label><span class="b">太字にしたい</span><br><input type="text" name="" value='<span class="b">この中に文字</span>' style="width:100%" /></label></p>
-    <p><label><span class="bred">太字で赤にしたい</span><br><input type="text" name="" value='<span class="bred">この中に文字</span>' style="width:100%" /></label></p>
-    <p><label><span class="bb">ものすごい太字にしたい</span><br><input type="text" name="" value='<span class="bb">この中に文字</span>' style="width:100%" /></label></p>
-    <p><label><span class="bm">マーカー付の太字にしたい</span><br><input type="text" name="" value='<span class="bm">この中に文字</span>' style="width:100%" /></label></p>
-    <p><label><span class="m">マーカー引きたい</span><br><input type="text" name="" value='<span class="m">この中に文字</span>' style="width:100%" /></label></p>
-    <p><label><small>小さい文字にしたい（補足とか）</small><br><input type="text" name="" value='<small>この中に文字</small>' style="width:100%" /></label></p>
-    <p><label><span class="b">リンクを貼りたい</span><br><input type="text" name="" value='<a target="_brank" href="この中にＵＲＬ">この中にリンク先のタイトル</a>' style="width:100%" /></label></p>
-  </div><!-- /.m-articleBody -->
-<?php
-}
-
-///// 管理画面に任意のCSSを読み込ませる
+////////// 管理画面に任意のCSSを読み込ませる //////////
 function wp_custom_admin_css() {
   echo "\n" . '<link href="' .get_bloginfo('template_directory'). '/admin.css' . '" rel="stylesheet" type="text/css" />' . "\n";
 }
 add_action('admin_head', 'wp_custom_admin_css', 100);
 
+
+////////// 管理画面のカテゴリーの追加ボタンを消す //////////
+function hide_category_add() {
+   global $pagenow;
+   global $post_type;//投稿タイプで切り分けたいときに使う
+   if (is_admin() && ($pagenow=='post-new.php' || $pagenow=='post.php') && $post_type=="db"){
+       echo '<style type="text/css">
+       #db_taxonomy-adder{display:none;}
+       #db_taxonomy-tabs{display:none;}
+       </style>';
+   }
+}
+  add_action( 'admin_head', 'hide_category_add'  );
+
+
+
+
+////////// 管理画面の親カテゴリーのチェックボックスを外す //////////
+require_once(ABSPATH . '/wp-admin/includes/template.php');
+class Danda_Category_Checklist extends Walker_Category_Checklist {
+ 
+     function start_el( &$output, $db_taxonomy, $depth, $args, $id = 0 ) {
+        extract($args);
+        if ( empty($taxonomy) )
+            $taxonomy = 'db_taxonomy';
+ 
+        if ( $taxonomy == 'db_taxonomy' )
+            $name = 'post_db_taxonomy';
+        else
+            $name = 'tax_input['.$taxonomy.']';
+ 
+        $class = in_array( $db_taxonomy->term_id, $popular_cats ) ? ' class="popular-db_taxonomy"' : '';
+        //親カテゴリの時はチェックボックス表示しない
+        if($db_taxonomy->parent == 0){
+               $output .= "\n<li id='{$taxonomy}-{$db_taxonomy->term_id}'$class>" . '<label class="selectit">' . esc_html( apply_filters('the_db_taxonomy', $db_taxonomy->name )) . '</label>';
+        }else{
+            $output .= "\n<li id='{$taxonomy}-{$db_taxonomy->term_id}'$class>" . '<label class="selectit"><input value="' . $db_taxonomy->term_id . '" type="checkbox" name="'.$name.'[]" id="in-'.$taxonomy.'-' . $db_taxonomy->term_id . '"' . checked( in_array( $db_taxonomy->term_id, $selected_cats ), true, false ) . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' . esc_html( apply_filters('the_db_taxonomy', $db_taxonomy->name )) . '</label>';
+        }
+    }
+ 
+}
 
 
 ?>
