@@ -1,0 +1,185 @@
+@charset "utf-8";
+
+////////// プロジェクト //////////
+
+
+////////// 目次 //////////
+// 新着情報
+// メインバナー
+// データベースメニュー
+
+
+////////// 新着情報 //////////
+.news{
+  border: 1px solid $clr_c5;
+  padding: 0 1rem;
+  dl{
+    border-top: 1px solid $clr_c5;
+    padding: 0.5rem 0;
+    @include media(pc) {
+      padding: 1rem 0;
+    }
+    &:first-child{
+      border-top: none;
+    }
+    span{
+      font-size: 1.1rem;
+      display: inline-block;
+      color: $clr_c7;
+      background-color: $clr_a1;
+      border-radius: 0.5rem;
+      padding: 0 0.5rem;
+      margin-left: 0.5rem;
+    }
+    a{
+      text-decoration: none;
+      color: $clr_a1;
+      @include media(pc) {
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  dt,dd{
+    display: inline;
+  }
+}
+
+
+////////// メインバナー //////////
+.bnr_basic{
+  font-weight: bold;
+  background-color: $clr_m;
+}
+.bnr_strategy{
+  font-weight: bold;
+  background-color: $clr_s;
+}
+
+
+////////// データベースメニュー //////////
+.dbMenu{
+  position: relative;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border: 1px solid $clr_c5;
+  border-radius: 3px;
+  @include media(pc) {
+    padding: 1rem 1rem 1rem 1.5rem;
+  }
+  &:before{
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  ul{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex-wrap: wrap;
+  flex-wrap:         wrap;
+  }
+  > ul{
+  border-top: 1px solid $clr_c5;
+  border-left: 1px solid $clr_c5;
+  box-sizing: border-box;
+  }
+  li{
+    border-right: 1px solid $clr_c5;
+    border-bottom: 1px solid $clr_c5;
+    border-collapse: collapse;
+    box-sizing: border-box;
+  }
+  a{
+    width: 100%;
+    padding: 1rem 0;
+    display: block;
+    color: $clr_c2;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    @include media(sl_tp) {
+      padding: 2rem 0;
+    }
+  }
+}
+.dbMenu_parent{
+  -webkit-flex-basis: 100%;
+  flex-basis:         100%;
+  @include media(sl_tp) {
+    -webkit-flex-basis: 25%;
+    flex-basis:         25%;
+    a{
+      padding: 5.2rem 0;
+    }
+  }
+  @include media(tl) {
+    a{ padding: 5.3rem 0; }
+  }
+  @include media(pc) {
+    a{ padding: 5.4rem 0; }
+  }
+}
+.dbMenu_bogu .dbMenu_parent a{
+  @include media(sl_tp) {
+    padding: 8.4rem 0;
+  }
+  @include media(tl) {
+    padding: 8.6rem 0;
+  }
+  @include media(pc) {
+    padding: 8.8rem 0;
+  }
+}
+.dbMenu_make .dbMenu_parent a{
+  @include media(pc) {
+    padding: 4.1rem 0;
+  }
+}
+.dbMenu_child{
+  width: 100%;
+  @include media(sl_tp) {
+    -webkit-flex-basis: 75%;
+    flex-basis:         75%;
+  }
+  li{
+    width: 33.33%;
+  }
+}
+.dbMenu_buki{
+  background-color: rgba($clr_a1, 0.1);
+  &:before{ background-color: $clr_a1; }
+  a:after,a:before{ border-color: $clr_a1; }
+  a{ background-color: $clr_c7; }
+}
+.dbMenu_bogu{
+  background-color: rgba($clr_a2, 0.1);
+  &:before{ background-color: $clr_a2; }
+  a:after,a:before{ border-color: $clr_a2; }
+  a{ background-color: $clr_c7; }
+}
+.dbMenu_irui{
+  background-color: rgba($clr_a3, 0.1);
+  &:before{ background-color: $clr_a3; }
+  a:after,a:before{ border-color: $clr_a3; }
+  a{ background-color: $clr_c7; }
+}
+.dbMenu_fuda{
+  background-color: rgba($clr_a4, 0.1);
+  &:before{ background-color: $clr_a4; }
+  a:after,a:before{ border-color: $clr_a4; }
+  a{ background-color: $clr_c7; }
+}
+.dbMenu_make{
+  background-color: rgba($clr_a5, 0.1);
+  &:before{ background-color: $clr_a5; }
+  a:after,a:before{ border-color: $clr_a5; }
+  a{ background-color: $clr_c7; }
+}

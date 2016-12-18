@@ -27,10 +27,10 @@ if (has_post_thumbnail()){//アイキャッチがある場合
 } else if ( preg_match( $searchPattern, $str, $imgurl ) && !is_archive()) {//アイキャッチは無いが画像がある場合
   echo '<meta property="og:image" content="'.$imgurl[2].'">';echo "\n";
 } else {//画像が1つも無い場合
-  echo '<meta property="og:image" content="http://sentora-z.com/wp-content/themes/stwiki/assets/img/defaultImg.png">';echo "\n";
+  echo '<meta property="og:image" content="http://sentora-z.com/wp-content/themes/stwiki/assets/img/defaultImg.jpg">';echo "\n";
 }
 } else {//投稿記事や固定ページ以外の場合（ホーム、カテゴリーなど）
-  echo '<meta property="og:image" content="http://sentora-z.com/wp-content/themes/stwiki/assets/img/defaultImg.png">';echo "\n";
+  echo '<meta property="og:image" content="http://sentora-z.com/wp-content/themes/stwiki/assets/img/defaultImg.jpg">';echo "\n";
 }
 ?>
 <!-- /OGP設定 -->

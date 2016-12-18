@@ -1,0 +1,244 @@
+@charset "UTF-8";
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 62.5%; }
+
+body {
+  color: #222222;
+  background-color: #fff;
+  font-size: 1.3em;
+  line-height: 1.7; }
+  @media only screen and (min-width: 481px) {
+    body {
+      font-size: 1.4em; } }
+  @media only screen and (min-width: 769px) {
+    body {
+      font-size: 1.5em; } }
+  @media only screen and (min-width: 1150px) {
+    body {
+      font-size: 1.6em; } }
+
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 100; }
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 200; }
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 300; }
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400; }
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Bold");
+  font-weight: bold; }
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue Regular");
+  font-weight: 100; }
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue Regular");
+  font-weight: 200; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, arial, Meiryo, "M+ 1p", sans-serif; }
+
+/* IE10以上 */
+@media all and (-ms-high-contrast: none) {
+  body {
+    font-family: arial, Meiryo, sans-serif; } }
+textarea {
+  resize: vertical;
+  transition: height 0.2s;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, arial, Meiryo, "M+ 1p", sans-serif; }
+
+a {
+  -webkit-tap-highlight-color: rgba(123, 14, 0, 0.3); }
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
+  vertical-align: middle;
+  border: 0; }
+
+p, li, dt, dd, th, td, pre {
+  word-wrap: break-word;
+  overflow-wrap: break-word; }
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+.clearfix {
+  *zoom: 1; }
+
+#titlediv #title-prompt-text {
+  padding: 0 0 0 10px; }
+
+.post-type-db #titlewrap:after {
+  content: '※[極]，[上]などの入力は不要です。';
+  color: #7b0e00;
+  display: block;
+  margin: 0.5rem 0 0; }
+  @media only screen and (min-width: 769px) {
+    .post-type-db #titlewrap:after {
+      content: '※[極]，[上]などの入力は不要です。※タイトル入力後、必ず初めにカテゴリーを選択してください。'; } }
+
+.post-type-db #edit-slug-box {
+  display: none; }
+
+#commentstatusdiv {
+  display: none; }
+
+#commentsdiv {
+  display: none; }
+
+#equip-adder {
+  display: none; }
+
+#equip-tabs {
+  display: none; }
+
+#in-equip-76,
+#in-equip-83,
+#in-equip-92,
+#in-equip-98,
+#in-equip-105 {
+  display: none; }
+
+#equip-76 > .selectit,
+#equip-83 > .selectit,
+#equip-92 > .selectit,
+#equip-98 > .selectit,
+#equip-105 > .selectit {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  font-size: 15px;
+  border-bottom: 1px solid #bbbbbb; }
+
+#equipchecklist .children {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-top: 10px; }
+  #equipchecklist .children li {
+    padding: 0 5px; }
+  #equipchecklist .children input {
+    margin-right: 0; }
+  @media only screen and (min-width: 1150px) {
+    #equipchecklist .children {
+      margin-bottom: 15px; } }
+
+#acf_109 > .inside:before {
+  content: '※数値が未入力の場合で、かつ下の「限界突破時ステータス」が入力されている場合、[限界突破時ステータス÷1.1]の値が自動的に表示されます。';
+  color: #7b0e00;
+  padding: 0.5rem 1.7rem;
+  display: block;
+  margin: 0.5rem 0 -1.5rem; }
+
+#acf_110 > .inside:before {
+  content: '※「限界突破：する」を選択した状態で、かつ数値が未入力の場合、[通常時ステータス×1.1]の値が自動的に表示されます。';
+  color: #7b0e00;
+  padding: 0.5rem 1.7rem;
+  display: block;
+  margin: 0.5rem 0 -1.5rem; }
+
+#acf_93 > .inside:after {
+  content: 'マスをタップ（クリック）することで、奥義範囲を指定できます。';
+  padding: 0.5rem 1.7rem;
+  display: block;
+  margin: -1.5rem 0 0.5rem; }
+
+.acf_postbox > .inside > .field {
+  padding: 1.7rem;
+  display: flex; }
+  .acf_postbox > .inside > .field .label {
+    width: 25%; }
+    .acf_postbox > .inside > .field .label label {
+      font-weight: normal;
+      color: #444444; }
+  .acf_postbox > .inside > .field .acf-input-wrap {
+    width: 75%; }
+    .acf_postbox > .inside > .field .acf-input-wrap input {
+      width: 100%;
+      height: 3.2rem; }
+  .acf_postbox > .inside > .field .acf_relationship, .acf_postbox > .inside > .field .acf-image-uploader, .acf_postbox > .inside > .field .acf-checkbox-list, .acf_postbox > .inside > .field select, .acf_postbox > .inside > .field textarea {
+    width: 75%; }
+
+ul.acf-radio-list li input, ul.acf-checkbox-list li input {
+  min-width: 25px;
+  min-height: 25px; }
+
+@media only screen and (min-width: 769px) {
+  input[type=checkbox]:checked:before {
+    margin: 0; } }
+
+#acf_116 > .inside {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1.2rem !important; }
+  #acf_116 > .inside > .field {
+    display: block;
+    border: none;
+    padding: 0.5rem;
+    box-sizing: border-box; }
+#acf_116 p.label {
+  display: none; }
+#acf_116 .field_type-select {
+  width: 25%; }
+  #acf_116 .field_type-select select {
+    width: 100%;
+    height: 3.2rem; }
+#acf_116 .field_type-text {
+  width: 75%; }
+  #acf_116 .field_type-text .acf-input-wrap {
+    width: 100%; }
+
+#acf-skill_area {
+  display: block; }
+  #acf-skill_area input, #acf-skill_area button, #acf-skill_area textarea, #acf-skill_area select {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; }
+  @media only screen and (min-width: 413px) {
+    #acf-skill_area {
+      display: flex; } }
+  #acf-skill_area ul.acf-checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 264px !important;
+    margin: 0 auto; }
+    @media only screen and (min-width: 413px) {
+      #acf-skill_area ul.acf-checkbox-list {
+        margin: 0; } }
+    #acf-skill_area ul.acf-checkbox-list li {
+      border-color: #ffffff;
+      width: 24px;
+      box-sizing: border-box;
+      margin-bottom: -1px; }
+      #acf-skill_area ul.acf-checkbox-list li input {
+        margin-right: -1px !important;
+        background-color: #4c4c4c; }
+        #acf-skill_area ul.acf-checkbox-list li input:checked::before {
+          content: ""; }
+        #acf-skill_area ul.acf-checkbox-list li input:checked {
+          background-color: #ff00ff; }
+      #acf-skill_area ul.acf-checkbox-list li:nth-child(61) input, #acf-skill_area ul.acf-checkbox-list li:nth-child(61) input:checked {
+        background-color: #ffff00; }

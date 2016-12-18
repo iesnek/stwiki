@@ -5,7 +5,7 @@ $term = get_current_term(); //カテゴリー・タグ・タームの取得
     echo '<meta name="description" content="'; bloginfo('description'); echo '">';echo "\n";
   } elseif (is_post_type_archive('db')) { //データベースアーカイブの場合
     echo '<meta name="keyword" content="戦国の虎,戦虎,セントラ,データベース">';echo "\n";
-    echo '<meta name="description" content="『戦国の虎z 攻略＆データベースwiki』は誰でも編集できる情報共有サイトです。">';echo "\n";
+    echo '<meta name="description" content="『戦国の虎z データベース&攻略wiki』は誰でも編集できる情報共有サイトです。">';echo "\n";
   } elseif (is_category()) { //カテゴリーアーカイブの場合
     echo '<meta name="keyword" content="戦国の虎,戦虎,セントラ,'; echo $term->name; echo '">';echo "\n";
     echo '<meta name="description" content="カテゴリー「'; echo $term->name; echo '」の一覧ページです。">';echo "\n";

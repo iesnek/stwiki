@@ -1,73 +1,17 @@
 @charset "utf-8";
 
-////////// プロジェクト //////////
+////////// プロジェクト-共通 //////////
 
 
 ////////// 目次 //////////
-// ヘッダーバー
 // ヘッダー
 // メニューボタン
+// ログインボタンとか
 // ナビゲーション
-// 新着情報
-// メインバナー
-// データベースメニュー
 // メニュー | サイドカラム
 // フッター
-
-////////// ヘッダーバー //////////
-.headBar{
-  background-color: $clr_c3;
-}
-.headBar_title{
-  padding-top: 0.75rem;
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: $clr_c5;
-  float: left;
-}
-.headBar_link{
-  padding: 0.5rem 0;
-  float: right;
-  li{
-    display: inline-block;
-  }
-  a{
-    display: block;
-    padding: 0.5rem 0.7rem;
-    background-color: $clr_c5;
-    border-radius: 2px;
-    margin-left: 0.5rem;
-    line-height: 0;
-    @include media(sl_tp) {
-      padding: 0 0 0 2rem;
-      margin-left: 2rem;
-      position: relative;
-      display: block;
-      background: none;
-      color: $clr_c5;
-      text-decoration: none;
-    }
-  }
-  svg{
-    fill: $clr_c3;
-    width: 1.5rem;
-    height: 1.5rem;
-    @include media(sl_tp) {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      margin: auto;
-      fill: $clr_c5;
-    }
-  }
-  p{
-    display: none;
-    @include media(sl_tp) {
-      display: block;
-    }
-  }
-}
+// パンくずリスト Breadcrumb NavXT
+// ページネーション
 
 
 ////////// ヘッダー //////////
@@ -76,92 +20,63 @@
 }
 .head_logo{
   padding: 1rem 0;
+  @include media(pc) {
+    padding: 0;
+  }
   a{
     display: block;
     width: 9rem;
     height: auto;
     margin: 0 auto;
     @include media(pc) {
-      width: 360px;
-      height: 140px;
+      width: 270px;
+      height: 105px;
       margin: 0;
-      padding: 2rem 0 3rem;
     }
   }
 }
 .head_cvr{
-  background-color: $clr_c1;
+  background-color: $clr_c2;
   > div{
+    position: relative;
+    width: 100%;
     @include media(pc) {
       width: 1150px;
       margin: 0 auto;
     }
   }
-  img{
-    width: 100%;
-  }
 }
-.head_bnr{
-  background-color: $clr_c2;
-  padding: 1rem 0;
-  @include media(pc) {
-    padding: 0;
-  }
-  a{
-    width: 95%;
-    display: table;
-    text-decoration: none;
-    margin: 0 auto;
-    height: 5rem;
-    @include media(pc) {
-      width: 450px;
-      height: 6rem;
-      transition: 0.3s;
-      &:hover{
-        opacity: 0.7;
-      }
-    }
-  }
-  h2{
-    display: table-cell;
-    vertical-align: middle;
+.head_cvr_inner{
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%); /* Safari用 */
+  transform: translate(-50%, -50%);
+  background-color: rgba($clr_c7,0.7);
+  box-shadow: 0 0 10px 0;
+  h2,p,a{ padding: 0.5rem 1rem; }
+  h2,a{
+    color: $clr_c7;
     text-align: center;
-    font-weight: bold;
-    width: 22%;
-    background-color: $clr_m;
-    color: $clr_c5;
-    position: relative;
-    @include media(pc) {
-      width: 30%;
-    }
-    &:after{
-      display: block;
-      content: '';
-      width: 0;
-      height: 0;
-      border-top: 2.5rem solid transparent;
-      border-bottom: 2.5rem solid transparent;
-      border-left: 10px solid $clr_m;
-      position: absolute;
-      top: 0;
-      left: 100%;
-      @include media(pc) {
-        border-top: 3rem solid transparent;
-        border-bottom: 3rem solid transparent;
-      }
-    }
   }
-  p{
-    display: table-cell;
-    vertical-align: middle;
-    width: 78%;
-    padding: 0 0.5rem 0 1.5rem;
-    font-size: 1.2rem;
-    background-color: $clr_c5;
-    color: $clr_c2;
-    @include media(pc) {
-      width: 70%;
-      font-size: 1.4rem;
+  h2{ background-color: rgba($clr_c1,0.6); }
+  a{
+    background-color: $clr_m;
+    display: block;
+    width: 60%;
+    margin: 0.5rem auto 1.5rem;
+    text-decoration: none;
+  }
+  @include media(sl_tp) { width: 60%; }
+  @include media(tl) {
+    h2,p,a{
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    a{
+      width: 60%;
+      margin: 1rem auto 3rem;
     }
   }
 }
@@ -170,9 +85,64 @@
 ////////// メニューボタン //////////
 .menuBtn{
   svg{
-    fill: $clr_c5;
+    fill: $clr_c7;
     width: 3rem;
     height: 3rem;
+  }
+}
+
+
+////////// ログインボタンとか //////////
+.head_link{
+  text-align: right;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  @include media(pc) {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 1.5rem;
+    li:first-child a:hover{ color:$clr_a1; }
+    li:first-child a:hover svg{ fill:$clr_a1; }
+    li:nth-child(2) a:hover{ color:$clr_a3; }
+    li:nth-child(2) a:hover svg{ fill:$clr_a3; }
+  }
+  li{
+    display: inline-block;
+  }
+  a{
+    display: block;
+    padding: 0.5rem;
+    background-color: $clr_c7;
+    border-radius: 2px;
+    margin-left: 0.5rem;
+    line-height: 0;
+    @include media(sl_tp) {
+      padding: 1.5rem 1.5rem 1.5rem 4rem;
+      margin-left: 1rem;
+      position: relative;
+      color: $clr_c2;
+      text-decoration: none;
+    }
+  }
+  svg{
+    fill: $clr_c3;
+    width: 2rem;
+    height: 2rem;
+    @include media(sl_tp) {
+      position: absolute;
+      top: 0;
+      left: 1rem;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+  p{
+    display: none;
+    @include media(sl_tp) {
+      display: block;
+    }
   }
 }
 
@@ -228,7 +198,7 @@
     width: 100%;
     padding: 0.5rem 0;
     display: block;
-    color: $clr_c5;
+    color: $clr_c7;
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
@@ -239,7 +209,7 @@
   }
   svg{
     margin-bottom: 0.1rem;
-    fill: $clr_c5;
+    fill: $clr_c7;
     width: 2rem;
     height: 2rem;
   }
@@ -253,170 +223,6 @@
     &:nth-child(4){ a:hover{ color: $clr_a3; } a:hover svg{ fill: $clr_a3; }}
     &:nth-child(5){ a:hover{ color: $clr_a4; } a:hover svg{ fill: $clr_a4; }}
   }
-}
-
-
-////////// 新着情報 //////////
-.news{
-  border: 1px solid $clr_c4;
-  padding: 0 1rem;
-  li{
-    border-top: 1px solid $clr_c4;
-    padding: 0.5rem 0;
-    @include media(pc) {
-      padding: 1rem 0;
-    }
-    &:first-child{
-      border-top: none;
-    }
-    a{
-      text-decoration: none;
-      color: $clr_m;
-      @include media(pc) {
-        &:hover{
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
-
-
-////////// メインバナー //////////
-.bnr_basic{
-  font-weight: bold;
-  background-color: $clr_m;
-}
-.bnr_strategy{
-  font-weight: bold;
-  background-color: $clr_s;
-}
-
-
-////////// データベースメニュー //////////
-.dbMenu{
-  position: relative;
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
-  border: 1px solid $clr_c4;
-  border-radius: 3px;
-  @include media(pc) {
-    padding: 1rem 1rem 1rem 1.5rem;
-  }
-  &:before{
-    content: '';
-    display: block;
-    width: 0.5rem;
-    height: 80%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-  }
-  ul{
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-flex-wrap: wrap;
-  flex-wrap:         wrap;
-  }
-  > ul{
-  border-top: 1px solid $clr_c4;
-  border-left: 1px solid $clr_c4;
-  box-sizing: border-box;
-  }
-  li{
-    border-right: 1px solid $clr_c4;
-    border-bottom: 1px solid $clr_c4;
-    border-collapse: collapse;
-    box-sizing: border-box;
-  }
-  a{
-    width: 100%;
-    padding: 1rem 0;
-    display: block;
-    color: $clr_c2;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    @include media(sl_tp) {
-      padding: 2rem 0;
-    }
-  }
-}
-.dbMenu_parent{
-  -webkit-flex-basis: 100%;
-  flex-basis:         100%;
-  @include media(sl_tp) {
-    -webkit-flex-basis: 25%;
-    flex-basis:         25%;
-    a{
-      padding: 5.2rem 0;
-    }
-  }
-  @include media(tl) {
-    a{ padding: 5.3rem 0; }
-  }
-  @include media(pc) {
-    a{ padding: 5.4rem 0; }
-  }
-}
-.dbMenu_bogu .dbMenu_parent a{
-  @include media(sl_tp) {
-    padding: 8.4rem 0;
-  }
-  @include media(tl) {
-    padding: 8.6rem 0;
-  }
-  @include media(pc) {
-    padding: 8.8rem 0;
-  }
-}
-.dbMenu_make .dbMenu_parent a{
-  @include media(pc) {
-    padding: 4.1rem 0;
-  }
-}
-.dbMenu_child{
-  width: 100%;
-  @include media(sl_tp) {
-    -webkit-flex-basis: 75%;
-    flex-basis:         75%;
-  }
-  li{
-    width: 33.33%;
-  }
-}
-.dbMenu_buki{
-  background-color: rgba($clr_a1, 0.1);
-  &:before{ background-color: $clr_a1; }
-  a:after,a:before{ border-color: $clr_a1; }
-  a{ background-color: $clr_c5; }
-}
-.dbMenu_bogu{
-  background-color: rgba($clr_a2, 0.1);
-  &:before{ background-color: $clr_a2; }
-  a:after,a:before{ border-color: $clr_a2; }
-  a{ background-color: $clr_c5; }
-}
-.dbMenu_irui{
-  background-color: rgba($clr_a3, 0.1);
-  &:before{ background-color: $clr_a3; }
-  a:after,a:before{ border-color: $clr_a3; }
-  a{ background-color: $clr_c5; }
-}
-.dbMenu_fuda{
-  background-color: rgba($clr_a4, 0.1);
-  &:before{ background-color: $clr_a4; }
-  a:after,a:before{ border-color: $clr_a4; }
-  a{ background-color: $clr_c5; }
-}
-.dbMenu_make{
-  background-color: rgba($clr_a5, 0.1);
-  &:before{ background-color: $clr_a5; }
-  a:after,a:before{ border-color: $clr_a5; }
-  a{ background-color: $clr_c5; }
 }
 
 
@@ -439,7 +245,7 @@
     font-size: 1.6rem;
     line-height: (4 / 1.6);
     text-decoration: none;
-    color: $clr_c5;
+    color: $clr_c7;
     text-align: center;
     position: relative;
   }
@@ -451,7 +257,7 @@
     left: 1rem;
     bottom: 0;
     margin: auto;
-    fill: $clr_c5;
+    fill: $clr_c7;
   }
 }
 .subHead_write a{ background-color: $clr_a1; }
@@ -480,7 +286,7 @@
     left: 2rem;
     bottom: 0;
     margin: auto;
-    fill: $clr_c5;
+    fill: $clr_c7;
     @include media(pc) {
       width: 2rem;
       height: 2rem;
@@ -504,15 +310,15 @@
 @include media(pc) {
   .subNav_list{
     margin-top: 1rem;
-    border-left: 1px solid $clr_c4;
-    border-top: 1px solid $clr_c4;
+    border-left: 1px solid $clr_c5;
+    border-top: 1px solid $clr_c5;
     a{
       display: block;
       padding-left: 3rem;
       box-sizing: border-box;
       width: 100%;
-      border-right: 1px solid $clr_c4;
-      border-bottom: 1px solid $clr_c4;
+      border-right: 1px solid $clr_c5;
+      border-bottom: 1px solid $clr_c5;
       text-decoration: none;
       color: $clr_c2;
     }
@@ -544,7 +350,7 @@
     padding-left: 10px;
     width: 290px;
     height: 40px;
-    border: 2px solid $clr_c4;
+    border: 2px solid $clr_c5;
     outline: none;
     box-sizing: border-box;
     border-radius: 0;
@@ -557,7 +363,7 @@
     padding: 0;
     width: 40px;
     height: 40px;
-    border: 2px solid $clr_c4;
+    border: 2px solid $clr_c5;
     background-color: $clr_c2;
     background-image: $svg-search;
     background-size: 25px 25px;
@@ -574,7 +380,6 @@
     top: 1px;
   }
 }
-
 
 
 ////////// フッター //////////
@@ -596,7 +401,7 @@
   a{
     font-size: 1.3rem;
     text-decoration: none;
-    color: $clr_c5;
+    color: $clr_c7;
     &:hover{
       text-decoration: underline;
     }
@@ -605,5 +410,189 @@
 .copyright{
   text-align: center;
   font-size: 1.2rem;
-  color: $clr_c5;
+  color: $clr_c7;
+}
+
+
+////////// パンくずリスト Breadcrumb NavXT //////////
+.breadcrumb{
+  display: none;
+  @include media(pc) {
+    display: block;
+    margin: 1rem 0;
+    > span{
+      display: inline-block;
+      span{
+        position:relative;
+        display: inline-block;
+        background-color: $clr_c6;
+        text-decoration: none;
+        color: $clr_c2;
+        height: 4rem;
+        line-height:4rem;
+        padding: 0 3rem 0 2rem;
+        text-align: center;
+        margin-right: 2.3rem;
+        &:hover{
+          background-color: $clr_a1;
+          color: $clr_c7;
+        }
+
+        &:before,
+        &:after{
+          content: "";
+          position:absolute;
+          top: 0;
+          border:0 solid $clr_c6;
+          border-width:20px 10px;
+          width: 0;
+          height: 0;
+        }
+        &:before{
+          left:-2rem;
+          border-left-color:transparent;
+        }
+        &:after{
+          left:100%;
+          border-color:transparent;
+          border-left-color:$clr_c6;
+        }
+        &:hover{
+          background-color: $clr_a1;
+          
+          &:before{
+            border-color:$clr_a1;
+            border-left-color:transparent;
+           }
+          &:after{
+            border-left-color:$clr_a1;
+          }
+        }
+
+      }
+    }
+    > span:first-child{
+      span{
+        padding-left:3rem;
+        &:before{ border: none; }
+      }
+    }
+    > span:last-child{
+      span{
+        padding-right:3rem;
+        background-color: $clr_a1;
+        color: $clr_c7;
+        &:before{ border-color:$clr_a1; border-left-color:transparent; }
+        &:after{ border: none; }
+      }
+    }
+  }
+}
+
+
+////////// ページネーション //////////
+.pager{
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding-top: 4.5rem;
+  margin: 2rem auto;
+  .page-numbers{
+    display: block;
+    padding: 0.3rem 0;
+    width: 4rem;
+    border: 1px solid  $clr_c5;
+    text-decoration: none;
+    font-weight: bold;
+    color: $clr_c1;
+    text-align: center;
+    margin: 0 0.3rem;
+    box-sizing: border-box;
+  }
+  .dots{ border: 0; }
+  .current{
+    background-color: $clr_a1;
+    color: $clr_c7;
+  }
+  .prev,.next{
+    position: absolute;
+    width: 42%;
+    top: 0;
+    background-color: $clr_a1;
+    color: $clr_c7;
+    &:before,&:after{
+      display: block;
+      content: '';
+      width: 0.8rem;
+      height: 0.75rem;
+      border: 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      @include media(pc) {
+        transition: 0.2s;
+      }
+    }
+    &:before{
+      border-top: solid 2px $clr_c7;
+    }
+    &:after{
+      border-bottom: solid 2px $clr_c7;
+    }
+  }
+  .prev{
+    left: 5%;
+    &:before,&:after{
+      -webkit-transform: rotate(-50deg);
+      -o-transform: rotate(-50deg);
+      transform: rotate(-50deg);
+      left: 1.5rem;
+      @include media(pc) {
+        left: 2.5rem;
+      }
+    }
+    &:after{
+      -webkit-transform: rotate(50deg);
+      -o-transform: rotate(50deg);
+      transform: rotate(50deg);
+    }
+    @include media(pc) {
+      &:hover:before, &:hover:after{
+        left: 1.5rem;
+      }
+    }
+  }
+  .next{
+    right: 0;
+    left: 0;
+    margin: auto;
+    &:before,&:after{
+      -webkit-transform: rotate(50deg);
+      -o-transform: rotate(50deg);
+      transform: rotate(50deg);
+      right: 1.5rem;
+      @include media(pc) {
+        right: 2.5rem;
+      }
+    }
+    &:after{
+      -webkit-transform: rotate(-50deg);
+      -o-transform: rotate(-50deg);
+      transform: rotate(-50deg);
+    }
+    @include media(pc) {
+      &:hover:before, &:hover:after{
+        right: 1.5rem;
+      }
+    }
+  }
+}
+.paged .pager .next{
+  right: 5%;
+  left: auto;
 }

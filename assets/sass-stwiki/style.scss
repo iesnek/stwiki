@@ -19,5 +19,8 @@
 @import "plugin--project";
 
 @import "object--component";
-@import "object--project";
+@import "object--project-common";
+@import "object--project-home";
+@import "object--project-archive";
+@import "object--project-single";
 @import "object--utility";

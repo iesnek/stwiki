@@ -1,14 +1,15 @@
 <?php
 
 ////////// 目次 //////////
-//基本設定
-//アーカイブページで現在のカテゴリー・タグ・タームを取得する
-//ログイン画面のロゴ変更
-//投稿記事一覧にアイキャッチ画像を表示
-//アーカイブにカスタム投稿タイプを表示
-//カスタム投稿タイプ-データベース
-//管理画面に任意のCSSを読み込ませる
-//管理画面のカテゴリーの追加ボタンを消す
+// 基本設定
+// アーカイブページで現在のカテゴリー・タグ・タームを取得する
+// ログイン画面のロゴ変更
+// 投稿記事一覧にアイキャッチ画像を表示
+// アーカイブにカスタム投稿タイプを表示
+// カスタム投稿タイプ-データベース
+// 管理画面に任意のCSSを読み込ませる
+// 管理画面のカテゴリーの追加ボタンを消す
+// タイトルの入力を必須にし、プレースホルダーを変更する
 
 
 ////////// 基本設定 //////////
@@ -95,7 +96,7 @@ function get_current_term(){
 function login_logo() {
 echo '<style type="text/css">
 #login h1 a {
-background: url('.get_template_directory_uri().'/assets/img/defaultImg.png) no-repeat;
+background: url('.get_template_directory_uri().'/assets/img/logo.jpg) no-repeat;
 width: 300px;
 height: 200px;
 background-size:contain;
@@ -166,7 +167,7 @@ function register_cpt_db() {
     'labels'       => $labels,
     'hierarchical' => false,  //階層ありならtrue（固定ページぽく） or 階層無しならfalse（投稿ぽく）
 
-    'supports' => array( 'title', 'thumbnail' ),
+    'supports' => array( 'title','comments' ),
 
     'public'       => true,
     'show_ui'      => true,
@@ -188,7 +189,7 @@ function register_cpt_db() {
 
 //カスタムタクソノミーを追加
 register_taxonomy(
-  'db_taxonomy',  // 追加するタクソノミー名（英小文字とアンダースコアのみ）
+  'equip',  // 追加するタクソノミー名（英小文字とアンダースコアのみ）
   'db',  // どのカスタム投稿タイプに追加するか
   array(
     'label' => 'カテゴリー',  // 管理画面上に表示される名前（投稿で言うカテゴリー）
@@ -196,9 +197,10 @@ register_taxonomy(
       'all_items' => 'カテゴリー一覧',  // 投稿画面の右カラムに表示されるテキスト（投稿で言うカテゴリー一覧）
       'add_new_item' => 'カテゴリーを追加'  // 投稿画面の右カラムに表示されるカテゴリ追加リンク
     ),
-    'hierarchical' => true  // タクソノミーを階層化するか否か（子カテゴリを作れるか否か）
+    'hierarchical' => true,  // タクソノミーを階層化するか否か（子カテゴリを作れるか否か）
   )
 );
+
 
 //カスタム投稿タイプのアイコン変更
 //https://developer.wordpress.org/resource/dashicons/　からアイコン選ぶ
@@ -219,46 +221,39 @@ function wp_custom_admin_css() {
 add_action('admin_head', 'wp_custom_admin_css', 100);
 
 
-////////// 管理画面のカテゴリーの追加ボタンを消す //////////
-function hide_category_add() {
-   global $pagenow;
-   global $post_type;//投稿タイプで切り分けたいときに使う
-   if (is_admin() && ($pagenow=='post-new.php' || $pagenow=='post.php') && $post_type=="db"){
-       echo '<style type="text/css">
-       #db_taxonomy-adder{display:none;}
-       #db_taxonomy-tabs{display:none;}
-       </style>';
-   }
+////////// タイトルの入力を必須にし、プレースホルダーを変更する //////////
+add_action( 'admin_head-post-new.php', 'post_edit_required' );
+add_action( 'admin_head-post.php', 'post_edit_required' );
+function post_edit_required() {
+?>
+<script type="text/javascript">
+jQuery(function($) {
+  if( 'db' == $('#post_type').val() ) {
+    $('#post').submit(function(e) {
+      // タイトル
+      if( '' == $('#title').val() ) {
+        alert('装備名を入力してください');
+        $('.spinner').css('visibility', 'hidden');
+        $('#publish').removeClass('button-primary-disabled');
+        $('#title').focus();
+        return false;
+      }
+    });
+  }
+});
+</script>
+<?php
 }
-  add_action( 'admin_head', 'hide_category_add'  );
-
-
-
-
-////////// 管理画面の親カテゴリーのチェックボックスを外す //////////
-require_once(ABSPATH . '/wp-admin/includes/template.php');
-class Danda_Category_Checklist extends Walker_Category_Checklist {
- 
-     function start_el( &$output, $db_taxonomy, $depth, $args, $id = 0 ) {
-        extract($args);
-        if ( empty($taxonomy) )
-            $taxonomy = 'db_taxonomy';
- 
-        if ( $taxonomy == 'db_taxonomy' )
-            $name = 'post_db_taxonomy';
-        else
-            $name = 'tax_input['.$taxonomy.']';
- 
-        $class = in_array( $db_taxonomy->term_id, $popular_cats ) ? ' class="popular-db_taxonomy"' : '';
-        //親カテゴリの時はチェックボックス表示しない
-        if($db_taxonomy->parent == 0){
-               $output .= "\n<li id='{$taxonomy}-{$db_taxonomy->term_id}'$class>" . '<label class="selectit">' . esc_html( apply_filters('the_db_taxonomy', $db_taxonomy->name )) . '</label>';
-        }else{
-            $output .= "\n<li id='{$taxonomy}-{$db_taxonomy->term_id}'$class>" . '<label class="selectit"><input value="' . $db_taxonomy->term_id . '" type="checkbox" name="'.$name.'[]" id="in-'.$taxonomy.'-' . $db_taxonomy->term_id . '"' . checked( in_array( $db_taxonomy->term_id, $selected_cats ), true, false ) . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' . esc_html( apply_filters('the_db_taxonomy', $db_taxonomy->name )) . '</label>';
-        }
-    }
- 
+function change_default_title( $title ) {
+  $screen = get_current_screen();
+  if ( 'db' == $screen->post_type ) {
+    $title = '装備名を入力してください';
+  }
+  return $title;
 }
+add_filter('enter_title_here', 'change_default_title');
+
+
 
 
 ?>

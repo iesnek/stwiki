@@ -1,0 +1,329 @@
+@charset "utf-8";
+
+////////// プロジェクト-シングル //////////
+
+
+////////// 目次 //////////
+// シングルページ共通
+// データベース共通
+// データベース-奥義
+// データベース-カラーバリエーション
+// データベース-陰陽秘術
+// データベース-編集するボタン
+
+////////// シングルページ共通 //////////
+.article{
+  h1{
+    background-color: $clr_c2;
+    color: $clr_c7;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+}
+
+// コメント欄
+.comment{
+  h2{
+    background-color: $clr_c3;
+    color: $clr_c7;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+  h3#comments{ display: none; }
+}
+
+// コメント一覧
+.commentlist{
+  width: 100%;
+  margin: 1rem auto;
+  li{
+    padding: 0.5rem 1rem;
+    border-bottom: 1px dashed $clr_a3;
+  }
+  .comment-author,.comment-meta{
+    display: inline;
+  }
+  .comment-author{
+    .fn{ font-weight: bold; }
+    .says{ display: none; }
+  }
+  .comment-meta{
+    font-size: 1rem;
+    a{
+      color: $clr_c5;
+      text-decoration: none;
+    }
+  }
+}
+
+// コメントフォーム
+.comment{
+  .comment-reply-title,.comment-notes{ display: none; }
+  .comment-form{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    background-color: rgba($clr_a3,0.2);
+    textarea{
+      width: 100%;
+      height: 10rem;
+    }
+    .comment-form-author{
+      margin-top: 1rem;
+      width: 100%;
+      label,input{ display: inline-block; }
+      label{
+        width: 5rem;
+      }
+      input{
+        width: 20rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        box-shadow: none;
+      }
+    }
+    .comment-form-comment label{ display: none; }
+    .comment-form-email,.comment-form-url{ display: none; }
+    .submit{
+      clear: both; //画像認証のフロートクリア
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: none;
+      display: block;
+      padding: 1rem 0;
+      width: 90%;
+      margin: 0 auto;
+      color: $clr_c7;
+      text-align: center;
+      background-color: $clr_a3;
+    }
+  }
+}
+
+// 画像認証プラグイン
+#si_refresh_com{
+  display: inline;
+}
+#captcha_code{
+  width: 11rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  box-shadow: none;
+}
+#captcha_code_label{
+  display: block;
+}
+.comment{
+  .captchaSizeDivLarge,.captchaSizeDivSmall{
+    display: block;
+    width: 55%;
+    float: right;
+    margin: 1.5rem 0;
+    @include media(sl_tp) {
+      width: 80%;
+    }
+  }
+  .comment-form{
+    > br{ display: none; }
+    > br + p{
+      width: 45%;
+      float: left;
+      margin: 1.5rem 0;
+      @include media(sl_tp) {
+        width: 20%;
+      }
+    }
+  }
+}
+
+
+////////// データベース共通 //////////
+.equipImg{
+  width: 100%;
+  height: auto;
+  padding: 1rem 2rem;
+  background-color: $clr_c6;
+  box-sizing: border-box;
+  @include media(sl_tp) {
+    width: 45%;
+    float: left;
+    padding: 0;
+    background: none;
+  }
+}
+.equipInfo_wrap{
+  margin-top: 2rem;
+  @include media(sl_tp) {
+    margin-top: 0;
+    width: 50%;
+    float: right;
+  }
+}
+.equipInfo{
+  width: 100%;
+  border-top: 1px solid $clr_c5;
+  border-left: 1px solid $clr_c5;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  h2{
+    background-color: $clr_c4;
+    color: $clr_c7;
+    text-align: center;
+    padding: 0.2rem 0;
+  }
+  dl{
+    display: table;
+    width: 100%;
+    text-align: center;
+  }
+  dt{
+    display: table-cell;
+    width: 40%;
+    background-color: $clr_c6;
+    border-right: 1px solid $clr_c5;
+    border-bottom: 1px solid $clr_c5;
+    vertical-align: middle;
+    padding: 0 1rem;
+  }
+  dd{
+    display: table-cell;
+    width: 60%;
+    border-right: 1px solid $clr_c5;
+    border-bottom: 1px solid $clr_c5;
+    vertical-align: middle;
+    padding: 0 1rem;
+  }
+  p{
+    box-sizing: border-box;
+    width: 100%;
+    border-right: 1px solid $clr_c5;
+    border-bottom: 1px solid $clr_c5;
+    padding: 0.5rem 1rem;
+    min-height: 5rem;
+  }
+}
+.status_l{
+  h2{ background-color: rgba($clr_a1,0.8); }
+  dt{ background-color: rgba($clr_a1,0.1); }
+  dd{ color: $clr_a1;}
+}
+@include media(sl_tp) {
+  .equipStatus{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    dl{
+      width: 50%;
+    }
+  }
+}
+
+
+////////// データベース-奥義 //////////
+.skillInfo{
+  @include media(sl_tp) {
+    width: 73%;
+    float: left;
+  }
+  dd{
+    text-align: left;
+  }
+}
+.skillArea{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5%;
+  border: 1px solid $clr_c5;
+  background-color: $clr_c6;
+  @include media(sl_tp) {
+    width: 25%;
+    float: right;
+    padding: 1%;
+  }
+  ul{
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    border-left: 1px solid $clr_c7;
+    &:first-child{ border-top: 1px solid $clr_c7; }
+  }
+  li{
+    width: 9.1%;
+    border-right: 1px solid $clr_c7;
+    border-bottom: 1px solid $clr_c7;
+  }
+  .in { background-color: #ff00ff; }
+  .out{ background-color: #4c4c4c; }
+  .i  { background-color: #ffff00; }
+}
+
+
+////////// データベース-カラーバリエーション //////////
+.equipClr{
+  ul{
+    width: 100%;
+  }
+  li{
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    box-sizing: border-box;
+    border-right: 1px solid $clr_c6;
+    border-bottom: 1px solid $clr_c6;
+  }
+  .black     { color:$clr_c7; background-color: #000000; }
+  .blue      { color:$clr_c7; background-color: #2148ab; }
+  .green     { color:$clr_c7; background-color: #0a831b; }
+  .red       { color:$clr_c7; background-color: #ae2e1e; }
+  .redpurple { color:$clr_c7; background-color: #b01583; }
+  .purple    { color:$clr_c7; background-color: #5715b0; }
+  .yellow    { color:$clr_c2; background-color: #cec830; }
+  .white     { color:$clr_c2; background-color: #ffffff; }
+  .pink      { color:$clr_c7; background-color: #f56edd; }
+  .turquoise { color:$clr_c7; background-color: #1c7a67; }
+  .no_clr    { width: 100%; }
+}
+
+
+////////// データベース-陰陽秘術 //////////
+.equipSpell{
+  dd{
+    text-align: left;
+  }
+}
+
+
+////////// データベース-編集するボタン //////////
+.writeBtn{
+  margin: 3rem auto;
+  width: 100%;
+  border: 3px double rgba($clr_a1,0.5);
+  box-sizing: border-box;
+  padding: 2rem 0;
+  background-color: rgba($clr_a1,0.1);
+  a{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    height: 6rem;
+    font-size: 1.6rem;
+    line-height: (6 / 1.6);
+    text-decoration: none;
+    color: $clr_c7;
+    text-align: center;
+    background-color: $clr_a1;
+  }
+  svg{
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    fill: $clr_c7;
+    margin-right: 1rem;
+  }
+}

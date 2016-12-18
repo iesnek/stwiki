@@ -1,0 +1,205 @@
+@charset "utf-8";
+
+////////// 管理画面 //////////
+
+
+////////// 目次 //////////
+// タイトルに注釈を追記
+// 不要な項目を消す
+// 管理画面のカテゴリーの追加ボタンを消す
+// カテゴリーの高さ制御をトル
+// 親カテゴリーを選択できなくする
+// カテゴリー選択の見た目を整える
+// カスタムフィールドに注釈を追記
+// アドバンスドカスタムフィールドの整形
+
+
+////////// タイトルに注釈を追記 //////////
+#titlediv #title-prompt-text{ padding: 0 0 0 10px; }//プレースホルダーの位置調整
+.post-type-db #titlewrap:after{
+  content: '※[極]，[上]などの入力は不要です。';
+  color: $clr_m;
+  display: block;
+  margin: 0.5rem 0 0;
+  @include media(tl) {
+    content: '※[極]，[上]などの入力は不要です。※タイトル入力後、必ず初めにカテゴリーを選択してください。';
+  }
+}
+
+
+////////// 不要な項目を消す //////////
+.post-type-db #edit-slug-box{ display:none; }
+#commentstatusdiv{ display: none; }
+#commentsdiv{ display: none; }
+
+////////// カテゴリーの追加ボタンとタブを消す //////////
+#equip-adder{ display:none; }
+#equip-tabs{ display:none; }
+
+
+////////// カテゴリーの高さ制御をトル //////////
+//#equip-all { max-height:none; }
+
+
+////////// 親カテゴリーを選択できなくする //////////
+#in-equip-76,
+#in-equip-83,
+#in-equip-92,
+#in-equip-98,
+#in-equip-105{ display: none; }
+
+
+////////// カテゴリー選択の見た目を整える //////////
+#equip-76 > .selectit,
+#equip-83 > .selectit,
+#equip-92 > .selectit,
+#equip-98 > .selectit,
+#equip-105 > .selectit{
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  font-size: 15px;
+  border-bottom: 1px solid $clr_c5;
+}
+#equipchecklist .children{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-top: 10px;
+  li{
+    padding: 0 5px;
+  }
+  input{
+    margin-right: 0;
+  }
+  @include media(pc) {
+    margin-bottom: 15px;
+  }
+}
+
+////////// カスタムフィールドに注釈を追記 //////////
+#acf_109 > .inside:before{
+  content: '※数値が未入力の場合で、かつ下の「限界突破時ステータス」が入力されている場合、[限界突破時ステータス÷1.1]の値が自動的に表示されます。';
+  color: $clr_m;
+  padding: 0.5rem 1.7rem;
+  display: block;
+  margin: 0.5rem 0 -1.5rem;
+}
+#acf_110 > .inside:before{
+  content: '※「限界突破：する」を選択した状態で、かつ数値が未入力の場合、[通常時ステータス×1.1]の値が自動的に表示されます。';
+  color: $clr_m;
+  padding: 0.5rem 1.7rem;
+  display: block;
+  margin: 0.5rem 0 -1.5rem;
+}
+#acf_93 > .inside:after{
+  content: 'マスをタップ（クリック）することで、奥義範囲を指定できます。';
+  padding: 0.5rem 1.7rem;
+  display: block;
+  margin: -1.5rem 0 0.5rem;
+}
+
+
+
+////////// アドバンスドカスタムフィールドの整形 //////////
+.acf_postbox > .inside > .field{
+  padding: 1.7rem;
+  display: flex;
+  .label{
+    width: 25%;
+    label{
+      font-weight: normal;
+      color: $clr_c3;
+    }
+  }
+  .acf-input-wrap{
+    width: 75%;
+    input{
+      width: 100%;
+      height: 3.2rem;
+    }
+  }
+  .acf_relationship,.acf-image-uploader,.acf-checkbox-list,select,textarea{
+    width: 75%;
+  }
+}
+ul.acf-radio-list li input, ul.acf-checkbox-list li input{
+  min-width: 25px;
+  min-height: 25px;
+}
+input[type=checkbox]:checked:before{
+  @include media(tl) {
+    margin: 0;
+  }
+}
+// 共鳴フィールド
+#acf_116{
+  > .inside{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.2rem !important;
+    > .field{
+      display: block;
+      border: none;
+      padding: 0.5rem;
+      box-sizing: border-box;
+    }
+  }
+  p.label{
+    display: none;
+  }
+  .field_type-select{
+    width: 25%;
+    select { width: 100%; height: 3.2rem; }
+  }
+  .field_type-text{
+    width: 75%;
+    .acf-input-wrap{ width: 100%; }
+  }
+}
+// 奥義範囲
+#acf-skill_area{
+
+  input, button, textarea, select {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+
+  display: block;
+  @media only screen and (min-width: 413px) {
+    display: flex;
+  }
+  ul.acf-checkbox-list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 264px !important;
+    margin: 0 auto;
+    @media only screen and (min-width: 413px) {
+      margin: 0;
+    }
+    li {
+      border-color: $clr_c7;
+      width: 24px;
+      box-sizing: border-box;
+      margin-bottom: -1px;
+      input {
+        margin-right: -1px !important;
+        background-color: #4c4c4c;
+        &:checked::before{
+          content: "";
+        }
+        &:checked{
+          background-color: #ff00ff;
+        }
+      }
+      &:nth-child(61) input,
+      &:nth-child(61) input:checked { background-color: #ffff00; }
+    }
+  }
+}

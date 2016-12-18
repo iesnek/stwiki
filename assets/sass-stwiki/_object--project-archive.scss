@@ -1,0 +1,212 @@
+@charset "utf-8";
+
+////////// プロジェクト-アーカイブ //////////
+
+
+////////// 目次 //////////
+// データベースリストの見出しと注釈
+// データベースリスト
+
+
+////////// データベースリストの見出しと注釈 //////////
+.notes{ font-size: 1.1rem; margin: 1rem 0; }
+.archive_headline{
+  margin: 1rem 0 ;
+  padding: 0 2rem 0 0.5rem;
+  color: $clr_c7;
+  box-sizing: border-box;
+  background-color: $clr_c2;
+  @include media(sl_tp) {
+    padding: 0 3rem 0 0.5rem;
+  }
+  ul{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    li{
+      padding: 0.5rem 0;
+      border-right: 1px solid $clr_c7;
+      box-sizing: border-box;
+      width: 12%;
+      text-align: center;
+      &:after{
+        content: '\A▽';
+        white-space: pre ;
+      }
+      @include media(sl_tp) {
+        width: 8%;
+      }
+    }
+    .img{
+      width: 28%;
+      border-left: 1px solid $clr_c7;
+      &:after{ content: '\A-'; }
+      @include media(sl_tp) {
+        width: 20%;
+      }
+    }
+    .name{
+      display: none;
+      &:after{ content: '\A-'; }
+      @include media(sl_tp) {
+        display: block;
+        width: 32%;
+      }
+    }
+  }
+}
+
+
+////////// データベースリスト //////////
+.dbItems{
+  margin-bottom: 0.5rem;
+  position: relative;
+  &:after{
+    content:'';
+    display: block;
+    width: 1.5rem;
+    height: 100%;
+    background-color: $clr_c3;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 3px 3px 0;
+    z-index: -1;
+    @include media(sl_tp) {
+      width: 2.5rem;
+    }
+  }
+  a{
+    position: relative;
+    display: block;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    border: 1px solid $clr_c5;
+    border-radius: 3px;
+    text-decoration: none;
+    color: $clr_c2;
+    box-sizing: border-box;
+    background-color: rgba($clr_c5,0.2);
+    @include media(sl_tp) {
+      padding: 0.5rem 3rem 0.5rem 0.5rem;
+    }
+    &:before,&:after{
+      display: block;
+      content: '';
+      width: 0.8rem;
+      height: 0.75rem;
+      border: 0;
+      -webkit-transform: rotate(50deg);
+      -o-transform: rotate(50deg);
+      transform: rotate(50deg);
+      position: absolute;
+      top: 0;
+      right: 0.5rem;
+      bottom: 0;
+      margin: auto;
+      @include media(sl_tp) {
+        right: 1rem;
+      }
+    }
+    &:before{
+      border-top: solid 2px $clr_c7;
+    }
+    &:after{
+      border-bottom: solid 2px $clr_c7;
+      -webkit-transform: rotate(-50deg);
+      -o-transform: rotate(-50deg);
+      transform: rotate(-50deg);
+    }
+  }
+}
+.itemWrap{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  border: 1px solid $clr_c5;
+  box-sizing: border-box;
+  background-color: $clr_c7;
+}
+.itemImg{
+  width: 28%;
+  height: auto;
+  border-collapse: collapse;
+  @include media(sl_tp) {
+    width: 20%;
+  }
+}
+.itemMeta{
+  width: 72%;
+  border-left: 1px solid $clr_c5;
+  @include media(sl_tp) {
+    width: 80%;
+    display: table;
+  }
+}
+.itemTitle{
+  height: 33.333%;
+  border-bottom: 1px solid $clr_c5;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  font-weight: bold;
+  padding: 0.5rem 0 0 1rem;
+  @include media(sl_tp) {
+    width: 40%;
+    display: table-cell;
+    height: 100%;
+    border-right: 1px solid $clr_c5;
+    border-bottom: 0;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+  }
+}
+.itemSpec_wrap{
+  width: 100%;
+  height: 66.666%;
+  @include media(sl_tp) {
+    display: table-cell;
+    width: 60%;
+    height: 100%;
+  }
+}
+.itemSpec{
+  display: table;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.itemCost{
+  display: table-cell;
+  position: relative;
+  width: 17%;
+  height: 100%;
+  vertical-align: middle;
+  border-right: 1px solid $clr_c5;
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
+.itemStatus{
+  width: 100%;
+  height: 100%;
+  ul{
+    display: table;
+    width: 100%;
+    height: 50%;
+  }
+  li{
+    display: table-cell;
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid $clr_c5;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    &:last-child{ border:0; }
+  }
+}
+.itemStatus_l{
+  border-top: 1px solid $clr_c5;
+  color: $clr_a1;
+}

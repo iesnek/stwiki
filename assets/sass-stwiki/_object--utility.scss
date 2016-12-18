@@ -12,6 +12,7 @@
 // パディング
 // 幅と高さ
 // ボーダー
+// テキストアライン
 
 
 ////////// ポジション //////////
@@ -153,3 +154,8 @@
 .u-bb0 { border-bottom: 0 !important; }
 .u-blN { border-left: none !important; }
 .u-bl0 { border-left: 0 !important; }
+
+////////// テキストアライン //////////
+.u-taL { text-align: left !important; }
+.u-taC { text-align: center !important; }
+.u-taR { text-align: right !important; }
