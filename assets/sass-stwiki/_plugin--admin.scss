@@ -38,8 +38,9 @@
 
 
 ////////// カテゴリーの高さ制御をトル //////////
-//#equip-all { max-height:none; }
-
+@include media(pc) {
+  #equip-all { max-height:none; }
+}
 
 ////////// 親カテゴリーを選択できなくする //////////
 #in-equip-76,

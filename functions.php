@@ -10,6 +10,7 @@
 // 管理画面に任意のCSSを読み込ませる
 // 管理画面のカテゴリーの追加ボタンを消す
 // タイトルの入力を必須にし、プレースホルダーを変更する
+// カスタムフィールドの値を使って他のカスタムフィールドを自動入力する
 
 
 ////////// 基本設定 //////////
@@ -22,14 +23,14 @@
     add_action( 'wp_enqueue_scripts', 'my_scripts' );
 
 // メインカラムの幅を指定
-if ( ! isset( $content_width ) ) $content_width = 750;
+if( ! isset( $content_width ) ) $content_width = 750;
 
 // <head>内に RSSフィードのリンクを表示
 add_theme_support( 'automatic-feed-links' );
 
 // カスタム投稿タイプをRSS配信する
 function mysite_feed_request($vars) {
-  if ( isset($vars['feed']) && !isset($vars['post_type']) ){
+  if( isset($vars['feed']) && !isset($vars['post_type']) ){
     $vars['post_type'] = array(
       'post',
       'db'
@@ -112,11 +113,11 @@ function customize_admin_manage_posts_columns($columns) {
   return $columns;
 }
 function customize_admin_add_column($column_name, $post_id) {
-  if ( 'thumbnail' == $column_name) {
+  if( 'thumbnail' == $column_name) {
     //テーマで設定されているサムネイルを利用する場合
     $thum = get_the_post_thumbnail($post_id, 'thumbnail4', array( 'style'=>'width:120px;height:auto;' ));
   }
-  if ( isset($thum) && $thum ) {
+  if( isset($thum) && $thum ) {
     echo $thum;
   }
 }
@@ -128,14 +129,14 @@ add_action( 'manage_posts_custom_column', 'customize_admin_add_column', 10, 2 );
 
 ////////// アーカイブにカスタム投稿タイプを表示 //////////
 function set_post_per_page( $query ) {
-  if ( is_admin() || !$query->is_main_query() )
+  if( is_admin() || !$query->is_main_query() )
     return;
 
-  if ( $query->is_post_type_archive( 'db' ) ) {
+  if( $query->is_post_type_archive( 'db' ) ) {
     return;
   }
 
-  if ( $query->is_home() || $query->is_archive() ) {
+  if( $query->is_home() || $query->is_archive() ) {
     $query->set( 'post_type', array( 'post', 'db' ) );
     return;
   }
@@ -246,7 +247,7 @@ jQuery(function($) {
 }
 function change_default_title( $title ) {
   $screen = get_current_screen();
-  if ( 'db' == $screen->post_type ) {
+  if( 'db' == $screen->post_type ) {
     $title = '装備名を入力してください';
   }
   return $title;
@@ -254,6 +255,55 @@ function change_default_title( $title ) {
 add_filter('enter_title_here', 'change_default_title');
 
 
+////////// カスタムフィールドの値で並び替えができるようにする //////////
+function add_meta_query_vars( $public_query_vars ) {
+    $public_query_vars[] = 'meta_key'; //カスタムフィールドのキー
+    $public_query_vars[] = 'meta_value_num'; //カスタムフィールドの値（文字列）
+    return $public_query_vars;
+}
+add_filter( 'query_vars', 'add_meta_query_vars' );
 
+
+////////// カスタムフィールドの値を使って他のカスタムフィールドを自動入力する //////////
+function replace_custom_field($id) {
+  $post = get_post($id);
+  // post_typeを判定(post, page, カスタム投稿)
+  if( $post->post_type == 'db' ){
+    $custom_fields = get_post_custom($id);
+    $attack_n = $custom_fields['attack_n'][0];
+    $defence_n = $custom_fields['defence_n'][0];
+    $speed_n = $custom_fields['speed_n'][0];
+    $mental_n = $custom_fields['mental_n'][0];
+    $attack_l = $custom_fields['attack_l'][0];
+    $defence_l = $custom_fields['defence_l'][0];
+    $speed_l = $custom_fields['speed_l'][0];
+    $mental_l = $custom_fields['mental_l'][0];
+    $total_n = $attack_n + $defence_n + $speed_n + $mental_n;
+    $total_l = $attack_l + $defence_l + $speed_l + $mental_l;
+
+    if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) { //自動保存時
+      return $post_id; // 何もしない
+    } elseif( !empty( $_POST ) ) { //投稿更新時
+      if(empty($attack_n) && (!empty($attack_l) || $attack_l == '0')){
+        update_post_meta($id, 'attack_n', round($attack_l / 1.1,0));
+      }
+      if(empty($defence_n) && (!empty($defence_l) || $defence == '0')){
+        update_post_meta($id, 'defence_n', round($defence_l / 1.1,0));
+      }
+      if(empty($speed_n) && (!empty($speed_l) || $speed_l == '0' )){
+        update_post_meta($id, 'speed_n', round($speed_l / 1.1,0));
+      }
+      if(empty($mental_n) && (!empty($mental_l) || $mental_l == '0')){
+        update_post_meta($id, 'mental_n', round($mental_l / 1.1,0));
+      }
+      if((!empty($attack_n) || $attack_n == '0') && (!empty($defence_n) || $defence_n == '0') && (!empty($speed_n) || $speed_n == '0') && (!empty($mental_n) || $mental_n == '0')){
+      update_post_meta($id, 'total_n', $total_n);
+      } elseif((!empty($attack_l) || $attack_l == '0') && (!empty($defence_l) || $defence_l == '0') && (!empty($speed_l) || $speed_l == '0') && (!empty($mental_l) || $mental_l == '0')){
+      update_post_meta($id, 'total_n', round($total_l / 1.1,0));
+      }
+    }
+  }
+}
+add_action( 'save_post', 'replace_custom_field' );
 
 ?>

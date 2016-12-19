@@ -110,6 +110,9 @@ p, li, dt, dd, th, td, pre {
 #equip-tabs {
   display: none; }
 
+@media only screen and (min-width: 1150px) {
+  #equip-all {
+    max-height: none; } }
 #in-equip-76,
 #in-equip-83,
 #in-equip-92,

@@ -1800,12 +1800,12 @@ html.mm-opened.mm-black .mm-page {
       box-sizing: border-box;
       width: 12%;
       text-align: center; }
-      .archive_headline ul li:after {
-        content: '\A▽';
-        white-space: pre; }
       @media only screen and (min-width: 481px) {
         .archive_headline ul li {
           width: 8%; } }
+      .archive_headline ul li a {
+        color: #ffffff;
+        text-decoration: none; }
     .archive_headline ul .img {
       width: 28%;
       border-left: 1px solid #ffffff; }

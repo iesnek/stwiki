@@ -30,12 +30,12 @@
       box-sizing: border-box;
       width: 12%;
       text-align: center;
-      &:after{
-        content: '\A▽';
-        white-space: pre ;
-      }
       @include media(sl_tp) {
         width: 8%;
+      }
+      a{
+        color: $clr_c7;
+        text-decoration: none;
       }
     }
     .img{

@@ -110,14 +110,45 @@
   <ul>
     <li class="img">画像</li>
     <li class="name">名称</li>
-    <li>ｺｽﾄ</li>
-    <li>攻撃</li>
-    <li>防御</li>
-    <li>早さ</li>
-    <li>気合</li>
+    <li>
+      <?php $url = $_SERVER['REQUEST_URI'];
+      if(strstr($url,'cost')==true && strstr($url,'ASC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'cost', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">コスト<br>▲</a>'; }
+      elseif(strstr($url,'cost')==true && strstr($url,'DESC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'cost', 'orderby' => 'meta_value_num', 'order' => 'ASC'), get_pagenum_link(1) ) . '">コスト<br>▼</a>'; }
+      else{ echo '<a href="' . add_query_arg( array('meta_key' => 'cost', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">コスト<br>▽</a>'; }
+      ?>
+    </li>
+    <li>
+      <?php $url = $_SERVER['REQUEST_URI'];
+      if(strstr($url,'attack_n')==true && strstr($url,'ASC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'attack_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">攻撃<br>▲</a>'; }
+      elseif(strstr($url,'attack_n')==true && strstr($url,'DESC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'attack_n', 'orderby' => 'meta_value_num', 'order' => 'ASC'), get_pagenum_link(1) ) . '">攻撃<br>▼</a>'; }
+      else{ echo '<a href="' . add_query_arg( array('meta_key' => 'attack_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">攻撃<br>▽</a>'; }
+      ?>
+    </li>
+    <li>
+      <?php $url = $_SERVER['REQUEST_URI'];
+      if(strstr($url,'defence_n')==true && strstr($url,'ASC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'defence_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">防御<br>▲</a>'; }
+      elseif(strstr($url,'defence_n')==true && strstr($url,'DESC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'defence_n', 'orderby' => 'meta_value_num', 'order' => 'ASC'), get_pagenum_link(1) ) . '">防御<br>▼</a>'; }
+      else{ echo '<a href="' . add_query_arg( array('meta_key' => 'defence_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">防御<br>▽</a>'; }
+      ?>
+    </li>
+    <li>
+      <?php $url = $_SERVER['REQUEST_URI'];
+      if(strstr($url,'speed_n')==true && strstr($url,'ASC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'speed_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">早さ<br>▲</a>'; }
+      elseif(strstr($url,'speed_n')==true && strstr($url,'DESC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'speed_n', 'orderby' => 'meta_value_num', 'order' => 'ASC'), get_pagenum_link(1) ) . '">早さ<br>▼</a>'; }
+      else{ echo '<a href="' . add_query_arg( array('meta_key' => 'speed_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">早さ<br>▽</a>'; }
+      ?>
+    </li>
+    <li>
+      <?php $url = $_SERVER['REQUEST_URI'];
+      if(strstr($url,'mental_n')==true && strstr($url,'ASC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'mental_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">気合<br>▲</a>'; }
+      elseif(strstr($url,'mental_n')==true && strstr($url,'DESC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'mental_n', 'orderby' => 'meta_value_num', 'order' => 'ASC'), get_pagenum_link(1) ) . '">気合<br>▼</a>'; }
+      else{ echo '<a href="' . add_query_arg( array('meta_key' => 'mental_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">気合<br>▽</a>'; }
+      ?>
+    </li>
     <li>合計</li>
   </ul>
 </header><!-- .archive_headline -->
+
 
 <?php
 if (have_posts()) :
