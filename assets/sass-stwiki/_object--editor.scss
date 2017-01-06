@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+////////// エディタ //////////
+
+
+// 見出し
+h2.h2{
+  padding-left: 1rem;
+  font-size: 2.4rem;
+  font-weight: bold;
+  background-color: rgba($clr_m,0.1);
+  border-left: 0.5rem solid $clr_m;
+  border-bottom: 1px solid $clr_m;
+  margin-bottom: 1rem;
+}
+
+h3.h3{
+  padding-left: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border-left: 0.3rem solid $clr_m;
+  margin-bottom: 1rem;
+}
+
+span.bold_black{
+  font-weight: bold;
+}
+
+span.bold_red{
+  font-weight: bold;
+  color: $clr_a1;
+}
+
+span.big_black{
+  font-size: 2rem;
+}
+
+span.big_red{
+  font-size: 2rem;
+  color: $clr_a1;
+}
+
+span.big_bold_black{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+span.big_bold_red{
+  font-size: 2rem;
+  color: $clr_a1;
+  font-weight: bold;
+}
+
+span.big_big_black{
+  font-size: 3.2rem;
+}
+
+span.marker{
+  background-color: $clr_a5;
+}
+
+span.marker_bold{
+  background-color: $clr_a5;
+  font-weight: bold;
+}
+
+.article a{
+  color: $clr_a2;
+  text-decoration: none;
+  &:after{
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background: $svg-link;
+    background-size: 1rem 1rem;
+  }
+}
+
+.article a[target="_blank"]{
+  color: $clr_a2;
+  text-decoration: none;
+  &:after{
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background: $svg-link2;
+    background-size: 1rem 1rem;
+  }
+}
+

@@ -1,247 +1,186 @@
 @charset "UTF-8";
-html {
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  font-size: 62.5%; }
+html { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-size: 62.5%; }
 
-body {
-  color: #222222;
-  background-color: #fff;
-  font-size: 1.3em;
-  line-height: 1.7; }
-  @media only screen and (min-width: 481px) {
-    body {
-      font-size: 1.4em; } }
-  @media only screen and (min-width: 769px) {
-    body {
-      font-size: 1.5em; } }
-  @media only screen and (min-width: 1150px) {
-    body {
-      font-size: 1.6em; } }
+body { color: #222222; background-color: #fff; font-size: 1.3em; line-height: 1.7; }
+@media only screen and (min-width: 481px) { body { font-size: 1.4em; } }
+@media only screen and (min-width: 769px) { body { font-size: 1.5em; } }
+@media only screen and (min-width: 1150px) { body { font-size: 1.6em; } }
 
-@font-face {
-  font-family: "Yu Gothic";
-  src: local("Yu Gothic Medium");
-  font-weight: 100; }
-@font-face {
-  font-family: "Yu Gothic";
-  src: local("Yu Gothic Medium");
-  font-weight: 200; }
-@font-face {
-  font-family: "Yu Gothic";
-  src: local("Yu Gothic Medium");
-  font-weight: 300; }
-@font-face {
-  font-family: "Yu Gothic";
-  src: local("Yu Gothic Medium");
-  font-weight: 400; }
-@font-face {
-  font-family: "Yu Gothic";
-  src: local("Yu Gothic Bold");
-  font-weight: bold; }
-@font-face {
-  font-family: "Helvetica Neue";
-  src: local("Helvetica Neue Regular");
-  font-weight: 100; }
-@font-face {
-  font-family: "Helvetica Neue";
-  src: local("Helvetica Neue Regular");
-  font-weight: 200; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, arial, Meiryo, "M+ 1p", sans-serif; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"); font-weight: 100; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"); font-weight: 200; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"); font-weight: 300; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"); font-weight: 400; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Bold"); font-weight: bold; }
+@font-face { font-family: "Helvetica Neue"; src: local("Helvetica Neue Regular"); font-weight: 100; }
+@font-face { font-family: "Helvetica Neue"; src: local("Helvetica Neue Regular"); font-weight: 200; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, arial, Meiryo, "M+ 1p", sans-serif; }
 
 /* IE10以上 */
-@media all and (-ms-high-contrast: none) {
-  body {
-    font-family: arial, Meiryo, sans-serif; } }
-textarea {
-  resize: vertical;
-  transition: height 0.2s;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, arial, Meiryo, "M+ 1p", sans-serif; }
+@media all and (-ms-high-contrast: none) { body { font-family: arial, Meiryo, sans-serif; } }
+textarea { resize: vertical; transition: height 0.2s; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, arial, Meiryo, "M+ 1p", sans-serif; }
 
-a {
-  -webkit-tap-highlight-color: rgba(123, 14, 0, 0.3); }
+a { -webkit-tap-highlight-color: rgba(123, 14, 0, 0.3); }
 
-img, svg {
-  max-width: 100%;
-  height: auto;
-  width: auto\9;
-  vertical-align: middle;
-  border: 0; }
+img, svg { max-width: 100%; height: auto; width: auto\9; vertical-align: middle; border: 0; }
 
-p, li, dt, dd, th, td, pre {
-  word-wrap: break-word;
-  overflow-wrap: break-word; }
+p, li, dt, dd, th, td, pre { word-wrap: break-word; overflow-wrap: break-word; }
 
-.clearfix:before, .clearfix:after {
-  content: " ";
-  display: table; }
+.clearfix:before, .clearfix:after { content: " "; display: table; }
 
-.clearfix:after {
-  clear: both; }
+.clearfix:after { clear: both; }
 
-.clearfix {
-  *zoom: 1; }
+.clearfix { *zoom: 1; }
 
-#titlediv #title-prompt-text {
-  padding: 0 0 0 10px; }
+#titlediv #title-prompt-text { padding: 0 0 0 10px; }
 
-.post-type-db #titlewrap:after {
-  content: '※[極]，[上]などの入力は不要です。';
-  color: #7b0e00;
-  display: block;
-  margin: 0.5rem 0 0; }
-  @media only screen and (min-width: 769px) {
-    .post-type-db #titlewrap:after {
-      content: '※[極]，[上]などの入力は不要です。※タイトル入力後、必ず初めにカテゴリーを選択してください。'; } }
+.post-type-db #titlewrap:after { content: '※[極]，[上]などの入力は不要です。'; color: #7b0e00; display: block; margin: 0.5rem 0 0; }
+@media only screen and (min-width: 769px) { .post-type-db #titlewrap:after { content: '※[極]，[上]などの入力は不要です。※タイトル入力後、必ず初めにカテゴリーを選択してください。'; } }
 
-.post-type-db #edit-slug-box {
-  display: none; }
+.post-type-db #edit-slug-box { display: none; }
 
-#commentstatusdiv {
-  display: none; }
+.post-type-db #minor-publishing { display: none; }
 
-#commentsdiv {
-  display: none; }
+.post-type-db #delete-action { display: none; }
 
-#equip-adder {
-  display: none; }
+#commentstatusdiv { display: none; }
 
-#equip-tabs {
-  display: none; }
+#commentsdiv { display: none; }
 
-@media only screen and (min-width: 1150px) {
-  #equip-all {
-    max-height: none; } }
-#in-equip-76,
-#in-equip-83,
-#in-equip-92,
-#in-equip-98,
-#in-equip-105 {
-  display: none; }
+#tagsdiv-cost { display: none; }
 
-#equip-76 > .selectit,
-#equip-83 > .selectit,
-#equip-92 > .selectit,
-#equip-98 > .selectit,
-#equip-105 > .selectit {
-  display: block;
-  width: 100%;
-  font-weight: bold;
-  font-size: 15px;
-  border-bottom: 1px solid #bbbbbb; }
+.mce-bws_shortcode_button { display: none !important; }
 
-#equipchecklist .children {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 0;
-  margin-top: 10px; }
-  #equipchecklist .children li {
-    padding: 0 5px; }
-  #equipchecklist .children input {
-    margin-right: 0; }
-  @media only screen and (min-width: 1150px) {
-    #equipchecklist .children {
-      margin-bottom: 15px; } }
+.bws_shortcode_button_tooltip { display: none !important; }
 
-#acf_109 > .inside:before {
-  content: '※数値が未入力の場合で、かつ下の「限界突破時ステータス」が入力されている場合、[限界突破時ステータス÷1.1]の値が自動的に表示されます。';
-  color: #7b0e00;
-  padding: 0.5rem 1.7rem;
-  display: block;
-  margin: 0.5rem 0 -1.5rem; }
+#acf_378 { display: none; }
 
-#acf_110 > .inside:before {
-  content: '※「限界突破：する」を選択した状態で、かつ数値が未入力の場合、[通常時ステータス×1.1]の値が自動的に表示されます。';
-  color: #7b0e00;
-  padding: 0.5rem 1.7rem;
-  display: block;
-  margin: 0.5rem 0 -1.5rem; }
+#equip-adder { display: none; }
 
-#acf_93 > .inside:after {
-  content: 'マスをタップ（クリック）することで、奥義範囲を指定できます。';
-  padding: 0.5rem 1.7rem;
-  display: block;
-  margin: -1.5rem 0 0.5rem; }
+#equip-tabs { display: none; }
 
-.acf_postbox > .inside > .field {
-  padding: 1.7rem;
-  display: flex; }
-  .acf_postbox > .inside > .field .label {
-    width: 25%; }
-    .acf_postbox > .inside > .field .label label {
-      font-weight: normal;
-      color: #444444; }
-  .acf_postbox > .inside > .field .acf-input-wrap {
-    width: 75%; }
-    .acf_postbox > .inside > .field .acf-input-wrap input {
-      width: 100%;
-      height: 3.2rem; }
-  .acf_postbox > .inside > .field .acf_relationship, .acf_postbox > .inside > .field .acf-image-uploader, .acf_postbox > .inside > .field .acf-checkbox-list, .acf_postbox > .inside > .field select, .acf_postbox > .inside > .field textarea {
-    width: 75%; }
+#major-publishing-actions #publishing-action { float: none; width: 90%; margin: 0 auto; }
+#major-publishing-actions #publishing-action .spinner { display: none; }
+#major-publishing-actions .button { width: 100%; box-sizing: border-box; height: 50px; }
 
-ul.acf-radio-list li input, ul.acf-checkbox-list li input {
-  min-width: 25px;
-  min-height: 25px; }
+@media only screen and (min-width: 1150px) { #equip-all { max-height: none; } }
+#in-equip-76, #in-equip-83, #in-equip-92, #in-equip-98, #in-equip-105 { display: none; }
 
-@media only screen and (min-width: 769px) {
-  input[type=checkbox]:checked:before {
-    margin: 0; } }
+#equip-76 > .selectit, #equip-83 > .selectit, #equip-92 > .selectit, #equip-98 > .selectit, #equip-105 > .selectit { display: block; width: 100%; font-weight: bold; font-size: 15px; border-bottom: 1px solid #bbbbbb; }
 
-#acf_116 > .inside {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1.2rem !important; }
-  #acf_116 > .inside > .field {
-    display: block;
-    border: none;
-    padding: 0.5rem;
-    box-sizing: border-box; }
-#acf_116 p.label {
-  display: none; }
-#acf_116 .field_type-select {
-  width: 25%; }
-  #acf_116 .field_type-select select {
-    width: 100%;
-    height: 3.2rem; }
-#acf_116 .field_type-text {
-  width: 75%; }
-  #acf_116 .field_type-text .acf-input-wrap {
-    width: 100%; }
+#equipchecklist .children { display: flex; flex-wrap: wrap; margin-left: 0; margin-top: 10px; }
+@media only screen and (min-width: 1150px) { #equipchecklist .children { margin-bottom: 15px; } }
+#equipchecklist .children li { padding: 0 5px; }
+#equipchecklist .children input { margin-right: 0; }
 
-#acf-skill_area {
-  display: block; }
-  #acf-skill_area input, #acf-skill_area button, #acf-skill_area textarea, #acf-skill_area select {
-    margin: 0;
-    padding: 0;
-    background: none;
-    border-radius: 0;
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none; }
-  @media only screen and (min-width: 413px) {
-    #acf-skill_area {
-      display: flex; } }
-  #acf-skill_area ul.acf-checkbox-list {
-    display: flex;
-    flex-wrap: wrap;
-    width: 264px !important;
-    margin: 0 auto; }
-    @media only screen and (min-width: 413px) {
-      #acf-skill_area ul.acf-checkbox-list {
-        margin: 0; } }
-    #acf-skill_area ul.acf-checkbox-list li {
-      border-color: #ffffff;
-      width: 24px;
-      box-sizing: border-box;
-      margin-bottom: -1px; }
-      #acf-skill_area ul.acf-checkbox-list li input {
-        margin-right: -1px !important;
-        background-color: #4c4c4c; }
-        #acf-skill_area ul.acf-checkbox-list li input:checked::before {
-          content: ""; }
-        #acf-skill_area ul.acf-checkbox-list li input:checked {
-          background-color: #ff00ff; }
-      #acf-skill_area ul.acf-checkbox-list li:nth-child(61) input, #acf-skill_area ul.acf-checkbox-list li:nth-child(61) input:checked {
-        background-color: #ffff00; }
+.pagetopLink { display: block; text-align: center; padding: 1rem 5rem; color: #ffffff; background-color: #245990; text-decoration: none; border-radius: 5px; }
+.pagetopLink:hover { color: #ffffff; }
+
+@media screen and (max-width: 782px) { #wpfooter { display: block; position: relative; padding: 3rem 0; float: none; margin: 0 !important; }
+  #wpfooter p { float: none; }
+  #footer-upgrade { display: none; }
+  .pagetopLink { margin: 0 auto; padding: 1rem 0; width: 70%; } }
+#acf_213 > .inside:before { content: 'スマホのスクリーンショット画像を添付してください。※ここに添付した画像は、ページには表示されません。管理人にメールで送られ、管理人がいい感じにトリミングした後アップロードします。※陰陽札のスクリーンショットはできれば拡大版が望ましいです。'; color: #7b0e00; padding: 0.5rem 1.7rem; display: block; margin: 0.5rem 0 -1.5rem; }
+
+#acf_109 > .inside:before { content: '※数値が未入力の場合で、かつ下の「限界突破時ステータス」が入力されている場合、[限界突破時ステータス÷1.1]の値が自動的に表示されます。'; color: #7b0e00; padding: 0.5rem 1.7rem; display: block; }
+
+#acf_110 > .inside:before { content: '※「限界突破：する」を選択した状態で、かつ数値が未入力の場合、[通常時ステータス×1.1]の値が自動的に表示されます。'; color: #7b0e00; padding: 0.5rem 1.7rem; display: block; margin: 0.5rem 0 -1.5rem; }
+
+#acf_93 > .inside:after { content: 'マスをタップ（クリック）することで、奥義範囲を指定できます。'; padding: 0.5rem 1.7rem; display: block; margin: -1.5rem 0 0.5rem; }
+
+.acf_postbox > .inside > .field { padding: 1.7rem; display: flex; }
+.acf_postbox > .inside > .field .label { width: 25%; }
+.acf_postbox > .inside > .field .label label { font-weight: normal; color: #444444; }
+.acf_postbox > .inside > .field .acf-input-wrap { width: 75%; }
+.acf_postbox > .inside > .field .acf-input-wrap input { width: 100%; height: 3.2rem; }
+.acf_postbox > .inside > .field .acf_relationship, .acf_postbox > .inside > .field .acf-image-uploader, .acf_postbox > .inside > .field .acf-checkbox-list, .acf_postbox > .inside > .field select, .acf_postbox > .inside > .field textarea { width: 75%; }
+
+ul.acf-radio-list li input, ul.acf-checkbox-list li input { min-width: 25px; min-height: 25px; }
+
+@media only screen and (min-width: 769px) { input[type=checkbox]:checked:before { margin: 0; } }
+
+#acf-cost .acf-taxonomy-field { width: 75%; }
+#acf-cost .categorychecklist-holder { border: none; overflow: visible; }
+#acf-cost .acf-checkbox-list { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; width: 100%; padding: 0; }
+#acf-cost .acf-checkbox-list li { padding: 0 5px; }
+@media only screen and (min-width: 481px) { #acf-cost .acf-checkbox-list li { padding: 0 15px 0 5px; } }
+#acf-cost .acf-checkbox-list input { margin-right: 0; }
+
+#acf-send-img .label { display: none; }
+
+#acf_116 > .inside { display: flex; flex-wrap: wrap; padding: 1.2rem !important; }
+#acf_116 > .inside > .field { display: block; border: none; padding: 0.5rem; box-sizing: border-box; }
+#acf_116 p.label { display: none; }
+#acf_116 .field_type-select { width: 25%; }
+#acf_116 .field_type-select select { width: 100%; height: 3.2rem; }
+#acf_116 .field_type-text { width: 75%; }
+#acf_116 .field_type-text .acf-input-wrap { width: 100%; }
+
+#acf-skill_area { display: block; }
+#acf-skill_area input, #acf-skill_area button, #acf-skill_area textarea, #acf-skill_area select { margin: 0; padding: 0; background: none; border-radius: 0; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+@media only screen and (min-width: 413px) { #acf-skill_area { display: flex; } }
+#acf-skill_area ul.acf-checkbox-list { display: flex; flex-wrap: wrap; width: 264px !important; margin: 0 auto; }
+@media only screen and (min-width: 413px) { #acf-skill_area ul.acf-checkbox-list { margin: 0; } }
+#acf-skill_area ul.acf-checkbox-list li { border-color: #ffffff; width: 24px; box-sizing: border-box; margin-bottom: -1px; }
+#acf-skill_area ul.acf-checkbox-list li input { margin-right: -1px !important; background-color: #4c4c4c; }
+#acf-skill_area ul.acf-checkbox-list li input:checked::before { content: ""; }
+#acf-skill_area ul.acf-checkbox-list li input:checked { background-color: #ff00ff; }
+#acf-skill_area ul.acf-checkbox-list li:nth-child(61) input, #acf-skill_area ul.acf-checkbox-list li:nth-child(61) input:checked { background-color: #ffff00; }
+
+#acf_183 { display: none; }
+
+.role-editor #menu-pages { display: none; }
+.role-editor #menu-posts-mw-wp-form { display: none; }
+.role-editor #menu-tools { display: none; }
+.role-editor #wp-admin-bar-wp-logo { display: none; }
+.role-editor #wp-admin-bar-new-content { display: none; }
+.role-editor #wp-admin-bar-new-mw-wp-form { display: none !important; }
+.role-editor #contextual-help-link { display: none; }
+.role-editor #menu-posts .wp-submenu-wrap li:nth-child(4) { display: none; }
+.role-editor #menu-posts .wp-submenu-wrap li:nth-child(5) { display: none; }
+.role-editor #menu-posts-db .wp-submenu-wrap li:nth-child(4) { display: none; }
+.role-editor #menu-posts-db .wp-submenu-wrap li:nth-child(5) { display: none; }
+.role-editor #ewww-image-optimizer-warning-opt-missing { display: none; }
+.role-editor .subsubsub .trash { display: none; }
+.role-editor .check-column > input { display: none; }
+.role-editor .tablenav > .actions { display: none; }
+.role-editor #acf-img { display: none; }
+.role-editor #acf-img2 { display: none; }
+.role-editor #the-list .inline { display: none; }
+.role-editor #category-adder { display: none; }
+.role-editor #tagsdiv-post_tag { display: none; }
+.role-editor .media-frame-content .attachment-actions { display: none; }
+.role-editor .media-frame-content .actions { display: none; }
+.role-editor #comments-form .author a { display: none; }
+.role-editor #comments-form .row-actions { display: none; }
+.role-editor #your-profile h2 { display: none; }
+.role-editor #your-profile .user-rich-editing-wrap { display: none; }
+.role-editor #your-profile .user-admin-color-wrap { display: none; }
+.role-editor #your-profile .user-comment-shortcuts-wrap { display: none; }
+.role-editor #your-profile .user-admin-bar-front-wrap { display: none; }
+.role-editor #your-profile .user-language-wrap { display: none; }
+.role-editor #your-profile .user-first-name-wrap { display: none; }
+.role-editor #your-profile .user-last-name-wrap { display: none; }
+.role-editor #your-profile .user-url-wrap { display: none; }
+
+.role-administrator #acf_213 { display: none; }
+
+@media only screen and (min-width: 481px) { .dashboard_nav { display: -webkit-flex; display: flex; -webkit-justify-content: space-between; justify-content: space-between; } }
+@media only screen and (min-width: 769px) { .dashboard_nav { display: block; } }
+.dashboard_nav ul { margin-bottom: 1rem; }
+@media only screen and (min-width: 481px) { .dashboard_nav ul { width: 32%; } }
+@media only screen and (min-width: 769px) { .dashboard_nav ul { width: 100%; } }
+@media only screen and (min-width: 1150px) { .dashboard_nav ul { display: -webkit-flex; display: flex; -webkit-justify-content: space-between; justify-content: space-between; } }
+.dashboard_nav li { margin-bottom: 0.6rem; }
+@media only screen and (min-width: 1150px) { .dashboard_nav li { width: 49%; } }
+.dashboard_nav a { box-sizing: border-box; display: block; padding: 1rem 0 1rem 2rem; width: 100%; border-radius: 5px; position: relative; }
+.dashboard_nav a:before, .dashboard_nav a:after { display: block; content: ''; width: 0.8rem; height: 0.75rem; border: 0; -webkit-transform: rotate(50deg); -o-transform: rotate(50deg); transform: rotate(50deg); position: absolute; top: 0; right: 1.5rem; bottom: 0; margin: auto; }
+@media only screen and (min-width: 1150px) { .dashboard_nav a:before, .dashboard_nav a:after { right: 2.5rem; transition: 0.2s; } }
+.dashboard_nav a:before { border-top: solid 2px #ffffff; }
+.dashboard_nav a:after { border-bottom: solid 2px #ffffff; -webkit-transform: rotate(-50deg); -o-transform: rotate(-50deg); transform: rotate(-50deg); }
+@media only screen and (min-width: 1150px) { .dashboard_nav a:hover:before, .dashboard_nav a:hover:after { right: 1.5rem; } }
+.dashboard_nav .dashicons { position: relative; display: inline-block; width: 1rem; margin: 0 1.5rem 0 0; color: #ffffff; }
+.dashboard_nav p { font-size: 1.6rem; margin: 0; display: inline-block; font-weight: bold; color: #ffffff; }
+.dashboard_nav .dbNav_my a { background-color: #444444; }
+.dashboard_nav .dbNav_db a { background-color: #7b0e00; }
+.dashboard_nav .dbNav_post a { background-color: #774800; }
+.dashboard_nav .mb { margin-bottom: 2rem; }

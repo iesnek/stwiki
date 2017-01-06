@@ -3,6 +3,11 @@
 ////////// プロジェクト-共通 //////////
 
 
+// 一時的に非表示
+.bnr_basic,.bnr_strategy{
+  display: none;
+}
+
 ////////// 目次 //////////
 // ヘッダー
 // メニューボタン
@@ -12,7 +17,7 @@
 // フッター
 // パンくずリスト Breadcrumb NavXT
 // ページネーション
-
+// コンテントノーン（404と検索結果無し）
 
 ////////// ヘッダー //////////
 .header{
@@ -345,15 +350,23 @@
     display: block;
     position: relative;
     width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
   }
   #s{
-    padding-left: 10px;
-    width: 290px;
-    height: 40px;
-    border: 2px solid $clr_c5;
-    outline: none;
-    box-sizing: border-box;
-    border-radius: 0;
+    @include media(pc) {
+      padding-left: 10px;
+      width: 290px;
+      height: 40px;
+      border: 2px solid $clr_c6;
+      border-top-color: $clr_c5;
+      border-left-color: $clr_c5;
+      outline: none;
+      box-sizing: border-box;
+      border-radius: 0;
+    }
   }
   #searchsubmit{
     position: absolute;
@@ -363,7 +376,9 @@
     padding: 0;
     width: 40px;
     height: 40px;
-    border: 2px solid $clr_c5;
+    border: 2px solid $clr_c6;
+    border-right-color: $clr_c5;
+    border-bottom-color: $clr_c5;
     background-color: $clr_c2;
     background-image: $svg-search;
     background-size: 25px 25px;
@@ -595,4 +610,17 @@
 .paged .pager .next{
   right: 5%;
   left: auto;
+}
+
+
+////////// コンテントノーン（404と検索結果無し） //////////
+.contentNone{
+  .read{
+    font-size: 2rem;
+    span{
+      font-size: 2.7rem;
+      line-height: 1;
+      font-weight: bold;
+    }
+  }
 }

@@ -97,7 +97,7 @@
       </li>
     </ul>
   </section><!-- .l-block dbMenu dbMenu_make -->
-<?php endif ?>
+<?php endif; ?>
 </section><!-- .l-section -->
 
 <aside class="pr"></aside><!-- .pr -->
@@ -108,8 +108,8 @@
 
 <header class="archive_headline">
   <ul>
-    <li class="img">画像</li>
-    <li class="name">名称</li>
+    <li class="img">画像<br>-</li>
+    <li class="name">名称<br>-</li>
     <li>
       <?php $url = $_SERVER['REQUEST_URI'];
       if(strstr($url,'cost')==true && strstr($url,'ASC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'cost', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">コスト<br>▲</a>'; }
@@ -145,7 +145,13 @@
       else{ echo '<a href="' . add_query_arg( array('meta_key' => 'mental_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">気合<br>▽</a>'; }
       ?>
     </li>
-    <li>合計</li>
+    <li>
+      <?php $url = $_SERVER['REQUEST_URI'];
+      if(strstr($url,'total_n')==true && strstr($url,'ASC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'total_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">合計<br>▲</a>'; }
+      elseif(strstr($url,'total_n')==true && strstr($url,'DESC')==true){ echo '<a href="' . add_query_arg( array('meta_key' => 'total_n', 'orderby' => 'meta_value_num', 'order' => 'ASC'), get_pagenum_link(1) ) . '">合計<br>▼</a>'; }
+      else{ echo '<a href="' . add_query_arg( array('meta_key' => 'total_n', 'orderby' => 'meta_value_num', 'order' => 'DESC'), get_pagenum_link(1) ) . '">合計<br>▽</a>'; }
+      ?>
+    </li>
   </ul>
 </header><!-- .archive_headline -->
 
@@ -156,13 +162,15 @@ while (have_posts()) : the_post();
 
 ///////////////////// アドバンスドカスタムフィールドの値を取得
   $rarity = get_field('rarity'); // 基本情報-レアリティ
-  $img = get_field('img'); // 基本情報-画像
-  $imgurl = wp_get_attachment_image_src($img, 'large'); // 基本情報-画像
-  $cost = get_field('cost'); // 基本情報-コスト
+  $img = get_field('img'); // 基本情報-画像-通常時
+  $imgurl = wp_get_attachment_image_src($img, 'medium'); // 基本情報-画像-通常時
+  $img2 = get_field('img2'); // 基本情報-画像-限界突破時
+  $img2url = wp_get_attachment_image_src($img2, 'medium'); // 基本情報-画像-限界突破時
   $attack_n = get_field('attack_n'); // 通常時ステータス-攻撃
   $defence_n = get_field('defence_n'); // 通常時ステータス-防御
   $speed_n = get_field('speed_n'); // 通常時ステータス-早さ
   $mental_n = get_field('mental_n'); // 通常時ステータス-気合
+  $total_n = get_field('total_n'); // 通常時ステータス-合計
   $limit_break = get_field('limit_break'); // 限界突破するか否か
   $attack_l = get_field('attack_l'); // 限界突破時ステータス-攻撃
   $defence_l = get_field('defence_l'); // 限界突破時ステータス-防御
@@ -183,14 +191,22 @@ while (have_posts()) : the_post();
     $fuda_ninja = is_object_in_term($post->ID, 'equip','ninja-fuda');
     $fuda_yokenshi = is_object_in_term($post->ID, 'equip','yokenshi-fuda');
 
+  $cost0 = is_object_in_term($post->ID, 'cost','cost0');
+  $cost1 = is_object_in_term($post->ID, 'cost','cost1');
+  $cost2 = is_object_in_term($post->ID, 'cost','cost2');
+  $cost3 = is_object_in_term($post->ID, 'cost','cost3');
+  $cost4 = is_object_in_term($post->ID, 'cost','cost4');
+  $cost5 = is_object_in_term($post->ID, 'cost','cost5');
+  $cost6 = is_object_in_term($post->ID, 'cost','cost6');
+  $cost7 = is_object_in_term($post->ID, 'cost','cost7');
 ?>
 
-<section id="post-<?php the_ID(); ?>" class="dbItems">
-  <a href="<?php the_permalink() ?>" title="<?php  echo $rarity . '&nbsp;'; the_title(); ?>">
+<section class="dbItems">
+  <a href="<?php the_permalink(); ?>" title="<?php echo $rarity . '&nbsp;'; the_title(); ?>">
     <div class="itemWrap">
       <div class="itemImg matchHeight">
       <?php if($imgurl): ?>
-        <img src="<? echo $imgurl[0]; ?>" alt="<?php the_title(); ?>">
+        <img src="<?php echo $imgurl[0]; ?>" alt="<?php the_title(); ?>">
       <?php else: if($bushi): ?>
         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/noimg-bushi.png" alt="">
         <?php elseif($yari): ?>
@@ -213,21 +229,21 @@ while (have_posts()) : the_post();
         <h3 class="itemTitle"><?php echo $rarity . '&nbsp;'; the_title(); ?></h3>
         <div class="itemSpec_wrap">
           <ul class="itemSpec">
-            <li class="itemCost"><?php if($cost){ echo $cost; } else{ echo '-'; } ?></li>
+            <li class="itemCost"><?php if ($terms = get_the_terms($post->ID, 'cost')) { foreach ( $terms as $term ) { echo esc_html($term->name); }} ?></li>
             <li class="itemStatus u-bd0">
               <ul class="itemStatus_n">
-                <li><?php if($attack_n){ echo $attack_n; } elseif($attack_l){ echo round($attack_l / 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if($defence_n){ echo $defence_n; } elseif($defence_l){ echo round($defence_l / 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if($speed_n){ echo $speed_n; } elseif($speed_l){ echo round($speed_l / 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if($mental_n){ echo $mental_n; } elseif($mental_l){ echo round($mental_l / 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if($attack_n && $defence_n && $speed_n && $mental_n){ echo $attack_n + $defence_n + $speed_n + $mental_n; } elseif($attack_l && $defence_l && $speed_l && $mental_l){ echo round($attack_l / 1.1,0) + round($defence_l / 1.1,0) + round($speed_l / 1.1,0) + round($mental_l / 1.1,0); } else{ echo '-'; } ?></li>
+                <li><?php if($attack_n){ echo $attack_n; } else{ echo '-'; } ?></li>
+                <li><?php if($defence_n){ echo $defence_n; } else{ echo '-'; } ?></li>
+                <li><?php if($speed_n){ echo $speed_n; } else{ echo '-'; } ?></li>
+                <li><?php if($mental_n){ echo $mental_n; } else{ echo '-'; } ?></li>
+                <li><?php if($total_n){ echo $total_n; } else{ echo '-'; } ?></li>
               </ul>
               <ul class="itemStatus_l">
                 <li><?php if($attack_l){ echo $attack_l; } elseif($attack_n && $limit_break){ echo round($attack_n * 1.1,0); } else{ echo '-'; } ?></li>
                 <li><?php if($defence_l){ echo $defence_l; } elseif($defence_n && $limit_break){ echo round($defence_n * 1.1,0); } else{ echo '-'; } ?></li>
                 <li><?php if($speed_l){ echo $speed_l; } elseif($speed_n && $limit_break){ echo round($speed_n * 1.1,0); } else{ echo '-'; } ?></li>
                 <li><?php if($mental_l){ echo $mental_l; } elseif($mental_n && $limit_break){ echo round($mental_n * 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if($attack_l && $defence_l && $speed_l && $mental_l){ echo $attack_l + $defence_l + $speed_l + $mental_l; } elseif($attack_n && $defence_n && $speed_n && $mental_n && $limit_break){ echo round($attack_n * 1.1,0) + round($defence_n * 1.1,0) + round($speed_n * 1.1,0) + round($mental_n * 1.1,0); } else{ echo '-'; } ?></li>
+                <li><?php if($attack_l && $defence_l && $speed_l && $mental_l){ echo $attack_l + $defence_l + $speed_l + $mental_l; } elseif($total_n && $limit_break){ echo round($total_n * 1.1,0); } else{ echo '-'; } ?></li>
               </ul>
             </li>
           </ul>

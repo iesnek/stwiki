@@ -1,0 +1,60 @@
+@charset "UTF-8";
+html { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-size: 62.5%; }
+
+body { color: #222222; background-color: #fff; font-size: 1.3em; line-height: 1.7; }
+@media only screen and (min-width: 481px) { body { font-size: 1.4em; } }
+@media only screen and (min-width: 769px) { body { font-size: 1.5em; } }
+@media only screen and (min-width: 1150px) { body { font-size: 1.6em; } }
+
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"); font-weight: 100; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"); font-weight: 200; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"); font-weight: 300; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"); font-weight: 400; }
+@font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Bold"); font-weight: bold; }
+@font-face { font-family: "Helvetica Neue"; src: local("Helvetica Neue Regular"); font-weight: 100; }
+@font-face { font-family: "Helvetica Neue"; src: local("Helvetica Neue Regular"); font-weight: 200; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, arial, Meiryo, "M+ 1p", sans-serif; }
+
+/* IE10以上 */
+@media all and (-ms-high-contrast: none) { body { font-family: arial, Meiryo, sans-serif; } }
+textarea { resize: vertical; transition: height 0.2s; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, arial, Meiryo, "M+ 1p", sans-serif; }
+
+a { -webkit-tap-highlight-color: rgba(123, 14, 0, 0.3); }
+
+img, svg { max-width: 100%; height: auto; width: auto\9; vertical-align: middle; border: 0; }
+
+p, li, dt, dd, th, td, pre { word-wrap: break-word; overflow-wrap: break-word; }
+
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+
+.clearfix:after { clear: both; }
+
+.clearfix { *zoom: 1; }
+
+h2.h2 { padding-left: 1rem; font-size: 2.4rem; font-weight: bold; background-color: rgba(123, 14, 0, 0.1); border-left: 0.5rem solid #7b0e00; border-bottom: 1px solid #7b0e00; margin-bottom: 1rem; }
+
+h3.h3 { padding-left: 1rem; font-size: 2rem; font-weight: bold; border-left: 0.3rem solid #7b0e00; margin-bottom: 1rem; }
+
+span.bold_black { font-weight: bold; }
+
+span.bold_red { font-weight: bold; color: #ae2e1e; }
+
+span.big_black { font-size: 2rem; }
+
+span.big_red { font-size: 2rem; color: #ae2e1e; }
+
+span.big_bold_black { font-size: 2rem; font-weight: bold; }
+
+span.big_bold_red { font-size: 2rem; color: #ae2e1e; font-weight: bold; }
+
+span.big_big_black { font-size: 3.2rem; }
+
+span.marker { background-color: #ceb552; }
+
+span.marker_bold { background-color: #ceb552; font-weight: bold; }
+
+.article a { color: #245990; text-decoration: none; }
+.article a:after { content: ''; display: inline-block; width: 1rem; height: 1rem; background: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22200px%22%20height%3D%22200px%22%20viewBox%3D%220%200%20200%20200%22%3E%3Cpath%20fill%3D%22%23245990%22%20d%3D%22M78.3%2C129.5c-19-19-19-50%2C0-69l38.4-38.4c9.2-9.2%2C21.5-14.3%2C34.5-14.3s25.3%2C5.1%2C34.5%2C14.3c19%2C19%2C19%2C50%2C0%2C69l-17.6%2C17.5l-14.7-14.7L171%2C76.4c10.9-10.9%2C10.9-28.7%2C0-39.6c-5.3-5.3-12.3-8.2-19.8-8.2c-7.5%2C0-14.5%2C2.9-19.8%2C8.2L93%2C75.2c-10.9%2C10.9-10.9%2C28.7%2C0%2C39.6L78.3%2C129.5zM83.3%2C177.9l38.4-38.4c19-19%2C19-50%2C0-69L107%2C85.2c10.9%2C10.9%2C10.9%2C28.7%2C0%2C39.6l-38.4%2C38.4c-5.3%2C5.3-12.3%2C8.2-19.8%2C8.2c-7.5%2C0-14.5-2.9-19.8-8.2c-10.9-10.9-10.9-28.7%2C0-39.6l17.6-17.6L31.8%2C91.3l-17.6%2C17.6c-19%2C19-19%2C50%2C0%2C69c9.2%2C9.2%2C21.5%2C14.3%2C34.5%2C14.3S74.1%2C187.1%2C83.3%2C177.9z%22/%3E%3C/svg%3E"); background-size: 1rem 1rem; }
+
+.article a[target="_blank"] { color: #245990; text-decoration: none; }
+.article a[target="_blank"]:after { content: ''; display: inline-block; width: 1rem; height: 1rem; background: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22200px%22%20height%3D%22200px%22%20viewBox%3D%220%200%20200%20200%22%3E%3Cpath%20fill%3D%22%23245990%22%20d%3D%22M50%2C125c0%2C0%2C11.5-37.5%2C75-37.5V125l75-50l-75-50v37.5C75%2C62.5%2C50%2C93.7%2C50%2C125zM137.5%2C150H25V75h24.6c2-2.3%2C4.1-4.6%2C6.3-6.7c8.6-8%2C18.9-14.2%2C30.5-18.3H0v125h162.5v-52.5l-25%2C16.7L137.5%2C150L137.5%2C150z%22/%3E%3C/svg%3E"); background-size: 1rem 1rem; }

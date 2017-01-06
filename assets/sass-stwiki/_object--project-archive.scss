@@ -41,14 +41,12 @@
     .img{
       width: 28%;
       border-left: 1px solid $clr_c7;
-      &:after{ content: '\A-'; }
       @include media(sl_tp) {
         width: 20%;
       }
     }
     .name{
       display: none;
-      &:after{ content: '\A-'; }
       @include media(sl_tp) {
         display: block;
         width: 32%;

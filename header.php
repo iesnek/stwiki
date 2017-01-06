@@ -35,7 +35,16 @@
 <body <?php body_class(); ?>>
 
 <!-- Google Analytics トラッキングコード -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-43680545-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <!-- /Google Analytics トラッキングコード -->
 
 
@@ -49,12 +58,21 @@
     </div><!-- .l-head_l -->
     <div class="l-head_r">
       <ul class="head_link">
-        <li><a href="">
+        <li><a href="
+        <?php if(is_single()) {
+        echo get_admin_url() . '/post.php?post=' . get_the_id() . '&action=edit';
+        } else {
+        echo get_admin_url();
+        } ?>">
           <svg><title>情報を編集する</title><use xlink:href="#write"/></svg>
         <p>情報を編集する</p></a></li>
-        <li><a href="">
-          <svg><title>ログイン</title><use xlink:href="#login"/></svg>
-        <p>ログイン</p></a></li>
+        <li>
+        <?php if( is_user_logged_in() ): ?>
+          <a href="<?php echo get_page_link('210'); ?>"><svg><title>マイページ</title><use xlink:href="#my"/></svg><p>マイページ</p></a>
+        <?php else: ?>
+          <a href="<?php echo get_page_link('204'); ?>"><svg><title>ログイン</title><use xlink:href="#login"/></svg><p>ログイン</p></a>
+        <?php endif; ?>
+        </li>
       </ul>
       <nav class="l-nav">
         <ul class="nav asanoha">
@@ -79,7 +97,7 @@
     <div class="head_cvr_inner arrow">
       <h2>戦国の虎z データベース&攻略wiki</h2>
       <p>当サイト、は誰でも編集できる『戦国の虎z』の情報共有サイト(非公式)です。</p>
-      <a href="">情報を編集する</a>
+      <a href="<?php if(is_user_logged_in()){ echo get_admin_url(); } else { echo get_page_link('204'); } ?>">情報を編集する</a>
     </div><!-- .head_cvr_inner -->
 
   </div></div>

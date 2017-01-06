@@ -14,9 +14,10 @@ if (have_posts()) :
 
 ///////////////////// アドバンスドカスタムフィールドの値を取得
   $rarity = get_field('rarity'); // 基本情報-レアリティ
-  $img = get_field('img'); // 基本情報-画像
-  $imgurl = wp_get_attachment_image_src($img, 'large'); // 基本情報-画像
-  $cost = get_field('cost'); // 基本情報-コスト
+  $img = get_field('img'); // 基本情報-画像-通常時
+  $imgurl = wp_get_attachment_image_src($img, 'large'); // 基本情報-画像-通常時
+  $img2 = get_field('img2'); // 基本情報-画像-限界突破時
+  $img2url = wp_get_attachment_image_src($img2, 'large'); // 基本情報-画像-限界突破時
   $resonance_rarity1 = get_field('resonance_rarity1'); // 共鳴-レアリティ1
   $resonance_name1 = get_field('resonance_name1'); // 共鳴-名前1
   $resonance_rarity2 = get_field('resonance_rarity2'); // 共鳴-レアリティ2
@@ -29,6 +30,7 @@ if (have_posts()) :
   $defence_n = get_field('defence_n'); // 通常時ステータス-防御
   $speed_n = get_field('speed_n'); // 通常時ステータス-早さ
   $mental_n = get_field('mental_n'); // 通常時ステータス-気合
+  $total_n = get_field('total_n'); // 通常時ステータス-合計
   $limit_break = get_field('limit_break'); // 限界突破するか否か
   $attack_l = get_field('attack_l'); // 限界突破時ステータス-攻撃
   $defence_l = get_field('defence_l'); // 限界突破時ステータス-防御
@@ -78,14 +80,25 @@ if (have_posts()) :
   $face = is_object_in_term($post->ID, 'equip','face');
   $skin = is_object_in_term($post->ID, 'equip','skin');
   $background = is_object_in_term($post->ID, 'equip','background');
+
+  $cost0 = is_object_in_term($post->ID, 'cost','cost0');
+  $cost1 = is_object_in_term($post->ID, 'cost','cost1');
+  $cost2 = is_object_in_term($post->ID, 'cost','cost2');
+  $cost3 = is_object_in_term($post->ID, 'cost','cost3');
+  $cost4 = is_object_in_term($post->ID, 'cost','cost4');
+  $cost5 = is_object_in_term($post->ID, 'cost','cost5');
+  $cost6 = is_object_in_term($post->ID, 'cost','cost6');
+  $cost7 = is_object_in_term($post->ID, 'cost','cost7');
 ?>
 
 <article id="post-<?php the_ID(); ?>" class="l-article article">
   <h1><?php echo $rarity . '&nbsp;'; the_title(); ?></h1>
   <div class="l-section clearfix">
     <div class="equipImg">
-    <?php if($imgurl): ?>
-      <img src="<? echo $imgurl[0]; ?>" alt="<?php the_title(); ?>">
+    <?php if($img2url): ?>
+      <img src="<?php echo $img2url[0]; ?>" alt="<?php the_title(); ?>">
+    <?php elseif($imgurl): ?>
+      <img src="<?php echo $imgurl[0]; ?>" alt="<?php the_title(); ?>">
     <?php else: if($bushi): ?>
       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/noimg-bushi.png" alt="">
       <?php elseif($yari): ?>
@@ -114,7 +127,7 @@ if (have_posts()) :
         </dl>
         <dl>
           <dt>コスト</dt>
-          <dd><?php if($cost) { echo $cost; } else { echo '入力する'; } ?></dd>
+          <dd><?php if ($terms = get_the_terms($post->ID, 'cost')) { foreach ( $terms as $term ) { echo esc_html($term->name); }} ?></dd>
         </dl>
         <dl>
           <dt>共鳴</dt>
@@ -133,23 +146,23 @@ if (have_posts()) :
         <div class="equipStatus">
           <dl>
             <dt>攻撃</dt>
-            <dd><?php if($attack_n){ echo $attack_n; } elseif($attack_l){ echo round($attack_l / 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($attack_n || $attack_n=='0'){ echo $attack_n; } else{ echo '-'; } ?></dd>
           </dl>
           <dl>
             <dt>防御</dt>
-            <dd><?php if($defence_n){ echo $defence_n; } elseif($defence_l){ echo round($defence_l / 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($defence_n || $defence_n=='0'){ echo $defence_n; } else{ echo '-'; } ?></dd>
           </dl>
           <dl>
             <dt>早さ</dt>
-            <dd><?php if($speed_n){ echo $speed_n; } elseif($speed_l){ echo round($speed_l / 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($speed_n || $speed_n=='0'){ echo $speed_n; } else{ echo '-'; } ?></dd>
           </dl>
           <dl>
             <dt>気合</dt>
-            <dd><?php if($mental_n){ echo $mental_n; } elseif($mental_l){ echo round($mental_l / 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($mental_n || $mental_n=='0'){ echo $mental_n; } else{ echo '-'; } ?></dd>
           </dl>
           <dl>
             <dt>合計</dt>
-            <dd><?php if($attack_n && $defence_n && $speed_n && $mental_n){ echo $attack_n + $defence_n + $speed_n + $mental_n; } elseif($attack_l && $defence_l && $speed_l && $mental_l){ echo round($attack_l / 1.1,0) + round($defence_l / 1.1,0) + round($speed_l / 1.1,0) + round($mental_l / 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($total_n || $total_n=='0'){ echo $total_n; } else{ echo '-'; } ?></dd>
           </dl>
         </div><!-- .equipStatus -->
       </section><!-- .status_n -->
@@ -158,23 +171,23 @@ if (have_posts()) :
         <div class="equipStatus">
           <dl>
             <dt>攻撃</dt>
-            <dd><?php if($attack_l){ echo $attack_l; } elseif($attack_n && $limit_break){ echo round($attack_n * 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($attack_l || $attack_l=='0'){ echo $attack_l; } elseif($attack_n && $limit_break){ echo round($attack_n * 1.1,0); } else{ echo '-'; } ?></dd>
           </dl>
           <dl>
             <dt>防御</dt>
-            <dd><?php if($defence_l){ echo $defence_l; } elseif($defence_n && $limit_break){ echo round($defence_n * 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($defence_l || $defence_l=='0'){ echo $defence_l; } elseif($defence_n && $limit_break){ echo round($defence_n * 1.1,0); } else{ echo '-'; } ?></dd>
           </dl>
           <dl>
             <dt>早さ</dt>
-            <dd><?php if($speed_l){ echo $speed_l; } elseif($speed_n && $limit_break){ echo round($speed_n * 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($speed_l || $speed_l=='0'){ echo $speed_l; } elseif($speed_n && $limit_break){ echo round($speed_n * 1.1,0); } else{ echo '-'; } ?></dd>
           </dl>
           <dl>
             <dt>気合</dt>
-            <dd><?php if($mental_l){ echo $mental_l; } elseif($mental_n && $limit_break){ echo round($mental_n * 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if($mental_l || $mental_l=='0'){ echo $mental_l; } elseif($mental_n && $limit_break){ echo round($mental_n * 1.1,0); } else{ echo '-'; } ?></dd>
           </dl>
           <dl>
             <dt>合計</dt>
-            <dd><?php if($attack_l && $defence_l && $speed_l && $mental_l){ echo $attack_l + $defence_l + $speed_l + $mental_l; } elseif($attack_n && $defence_n && $speed_n && $mental_n && $limit_break){ echo round($attack_n * 1.1,0) + round($defence_n * 1.1,0) + round($speed_n * 1.1,0) + round($mental_n * 1.1,0); } else{ echo '-'; } ?></dd>
+            <dd><?php if(($attack_l || $attack_l=='0') && ($defence_l || $defence_l=='0') && ($speed_l || $speed_l=='0') && ($mental_l || $mental_l=='0')){ echo $attack_l + $defence_l + $speed_l + $mental_l; } elseif($total_n && $limit_break){ echo round($total_n * 1.1,0); } else{ echo '-'; } ?></dd>
           </dl>
         </div><!-- .equipStatus -->
       </section><!-- .status_l -->
@@ -197,13 +210,13 @@ if (have_posts()) :
       </dl>
       <dl>
         <dt>消費気合</dt>
-        <dd><?php if($mental_cost){ echo $mental_cost; } elseif($skill_title){ echo '入力する'; } else{ echo '-'; } ?></dd>
+        <dd><?php if($mental_cost){ echo $mental_cost; } elseif($skill_title){ echo '<a href="' . get_admin_url() . '/post.php?post=' . get_the_id() . '&action=edit' . '">入力する</a>'; } else{ echo '-'; } ?></dd>
       </dl>
       <dl>
         <dt>効果</dt>
-        <dd><?php if($effect){ echo $effect; } elseif($skill_title){ echo '入力する'; } else{ echo '-'; } ?></dd>
+        <dd><?php if($effect){ echo $effect; } elseif($skill_title){ echo '<a href="' . get_admin_url() . '/post.php?post=' . get_the_id() . '&action=edit' . '">入力する</a>'; } else{ echo '-'; } ?></dd>
       </dl>
-      <p><?php if($effect_description){ echo $effect_description; } elseif($skill_title){ echo '入力する'; } else{ echo '-'; } ?></p>
+      <p><?php if($effect_description){ echo $effect_description; } elseif($skill_title){ echo '<a href="' . get_admin_url() . '/post.php?post=' . get_the_id() . '&action=edit' . '">入力する</a>'; } else{ echo '-'; } ?></p>
     </div><!-- .equipInfo skillInfo -->
     <div class="skillArea">
       <ul>
@@ -355,7 +368,7 @@ if (have_posts()) :
 
   <section class="l-section equipInfo equipMake">
     <h2>説明</h2>
-    <p><?php if($make_description){ echo $make_description; } else{ echo '入力する'; } ?></p>
+    <p><?php if($make_description){ echo $make_description; } else{ echo '<a href="' . get_admin_url() . '/post.php?post=' . get_the_id() . '&action=edit' . '">入力する</a>'; } ?></p>
   </section><!-- .l-section equipInfo equipMake -->
 
 <?php if($head || $mask || $neck || $body || $waist || $shoulder || $arm || $leg || $inner || $outer || $shoes || $front || $option || $hair): ?>
@@ -374,6 +387,7 @@ if (have_posts()) :
         elseif($value == 'white'){ echo '白'; }
         elseif($value == 'pink'){ echo 'ピンク'; }
         elseif($value == 'turquoise'){ echo '青緑'; }
+        elseif($value == 'brown'){ echo '茶'; }
         echo '</li>'; } } else{ echo '<li class="no_clr">-</li>'; } ?>
     </ul>
   </section><!-- .l-section equipClr -->
@@ -384,11 +398,11 @@ if (have_posts()) :
     <h2>陰陽秘術</h2>
     <dl>
       <dt>秘術名</dt>
-      <dd><?php if($spell_name){ echo $spell_name; } else{ echo '入力する'; } ?></dd>
+      <dd><?php if($spell_name){ echo $spell_name; } else{ echo '<a href="' . get_admin_url() . '/post.php?post=' . get_the_id() . '&action=edit' . '">入力する</a>'; } ?></dd>
     </dl>
     <dl>
       <dt>効果</dt>
-      <dd><?php if($spell_effect){ echo $spell_effect; } else{ echo '入力する'; } ?></dd>
+      <dd><?php if($spell_effect){ echo $spell_effect; } else{ echo '<a href="' . get_admin_url() . '/post.php?post=' . get_the_id() . '&action=edit' . '">入力する</a>'; } ?></dd>
     </dl>
   </section><!-- .l-section equipInfo equipSpell -->
 <?php endif; ?>
@@ -406,7 +420,7 @@ else :
 endif;
 ?>
 
-<aside class="writeBtn arrow"><a href="">
+<aside class="writeBtn arrow"><a href="<?php echo get_admin_url() . '/post.php?post=' . get_the_id() . '&action=edit'; ?>">
   <svg><title>このページを編集する</title><use xlink:href="#write"/></svg>このページを編集する
 </a></aside><!-- .write -->
 

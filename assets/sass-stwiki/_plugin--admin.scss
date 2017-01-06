@@ -10,8 +10,12 @@
 // カテゴリーの高さ制御をトル
 // 親カテゴリーを選択できなくする
 // カテゴリー選択の見た目を整える
+// function.phpで追加した「ページ上部へ戻る」ボタンのスタイル
 // カスタムフィールドに注釈を追記
 // アドバンスドカスタムフィールドの整形
+// 編集者権限の表示制限
+// 管理者権限の表示制限
+// ダッシュボードウィジェット
 
 
 ////////// タイトルに注釈を追記 //////////
@@ -29,18 +33,41 @@
 
 ////////// 不要な項目を消す //////////
 .post-type-db #edit-slug-box{ display:none; }
+.post-type-db #minor-publishing{ display: none; }
+.post-type-db #delete-action{ display: none; }
 #commentstatusdiv{ display: none; }
 #commentsdiv{ display: none; }
+#tagsdiv-cost{ display: none; }
+.mce-bws_shortcode_button{ display: none !important; }
+.bws_shortcode_button_tooltip{ display: none !important; }
+#acf_378{ display: none; }
 
 ////////// カテゴリーの追加ボタンとタブを消す //////////
 #equip-adder{ display:none; }
 #equip-tabs{ display:none; }
 
 
+#major-publishing-actions{
+  #publishing-action{
+    float: none;
+    width: 90%;
+    margin: 0 auto;
+    .spinner{
+      display: none;
+    }
+  }
+  .button{
+    width: 100%;
+    box-sizing: border-box;
+    height: 50px;
+  }
+}
+
 ////////// カテゴリーの高さ制御をトル //////////
 @include media(pc) {
   #equip-all { max-height:none; }
 }
+
 
 ////////// 親カテゴリーを選択できなくする //////////
 #in-equip-76,
@@ -67,24 +94,60 @@
   flex-wrap: wrap;
   margin-left: 0;
   margin-top: 10px;
+  @include media(pc) {
+    margin-bottom: 15px;
+  }
   li{
     padding: 0 5px;
   }
   input{
     margin-right: 0;
   }
-  @include media(pc) {
-    margin-bottom: 15px;
+}
+
+
+////////// function.phpで追加した「ページ上部へ戻る」ボタンのスタイル //////////
+.pagetopLink{
+  display: block;
+  text-align: center;
+  padding: 1rem 5rem;
+  color: $clr_c7;
+  background-color: $clr_a2;
+  text-decoration: none;
+  border-radius: 5px;
+  &:hover{ color: $clr_c7; }
+}
+@media screen and (max-width: 782px) {
+  #wpfooter{
+    display: block;
+    position: relative;
+    padding: 3rem 0;
+    float: none;
+    margin: 0 !important;
+    p{ float: none; }
+  }
+  #footer-upgrade{ display: none; }
+  .pagetopLink{
+    margin: 0 auto;
+    padding: 1rem 0;
+    width: 70%;
   }
 }
 
+
 ////////// カスタムフィールドに注釈を追記 //////////
+#acf_213 > .inside:before{
+  content: 'スマホのスクリーンショット画像を添付してください。※ここに添付した画像は、ページには表示されません。管理人にメールで送られ、管理人がいい感じにトリミングした後アップロードします。※陰陽札のスクリーンショットはできれば拡大版が望ましいです。';
+  color: $clr_m;
+  padding: 0.5rem 1.7rem;
+  display: block;
+  margin: 0.5rem 0 -1.5rem;
+}
 #acf_109 > .inside:before{
   content: '※数値が未入力の場合で、かつ下の「限界突破時ステータス」が入力されている場合、[限界突破時ステータス÷1.1]の値が自動的に表示されます。';
   color: $clr_m;
   padding: 0.5rem 1.7rem;
   display: block;
-  margin: 0.5rem 0 -1.5rem;
 }
 #acf_110 > .inside:before{
   content: '※「限界突破：する」を選択した状態で、かつ数値が未入力の場合、[通常時ステータス×1.1]の値が自動的に表示されます。';
@@ -99,7 +162,6 @@
   display: block;
   margin: -1.5rem 0 0.5rem;
 }
-
 
 
 ////////// アドバンスドカスタムフィールドの整形 //////////
@@ -133,6 +195,35 @@ input[type=checkbox]:checked:before{
     margin: 0;
   }
 }
+// コスト
+#acf-cost{
+  .acf-taxonomy-field{
+    width: 75%;
+  }
+  .categorychecklist-holder{
+    border: none;
+    overflow: visible;
+  }
+  .acf-checkbox-list{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    li{
+      padding: 0 5px;
+      @include media(sl_tp) {
+        padding: 0 15px 0 5px;
+      }
+    }
+    input{
+      margin-right: 0;
+    }
+  }
+}
+// 送信画像
+#acf-send-img .label{ display: none; }
 // 共鳴フィールド
 #acf_116{
   > .inside{
@@ -203,4 +294,162 @@ input[type=checkbox]:checked:before{
       &:nth-child(61) input:checked { background-color: #ffff00; }
     }
   }
+}
+// 合計値
+#acf_183{ display: none; }
+
+
+////////// 編集者権限の表示制限 //////////
+.role-editor{
+
+// 基本表示
+  #menu-pages{ display: none; }
+  #menu-posts-mw-wp-form{ display: none; }
+  #menu-tools{ display: none; }
+  #wp-admin-bar-wp-logo{ display: none; }
+  #wp-admin-bar-new-content{ display: none; }
+  #wp-admin-bar-new-mw-wp-form{ display: none !important; }
+  #contextual-help-link{ display: none; }
+  #menu-posts .wp-submenu-wrap li:nth-child(4){ display: none; } //投稿のカテゴリー
+  #menu-posts .wp-submenu-wrap li:nth-child(5){ display: none; } //投稿のタグ
+  #menu-posts-db .wp-submenu-wrap li:nth-child(4){ display: none; } //装備のカテゴリー
+  #menu-posts-db .wp-submenu-wrap li:nth-child(5){ display: none; } //装備のコスト
+  #ewww-image-optimizer-warning-opt-missing{ display: none; }
+  .subsubsub .trash{ display: none; }
+
+// 装備
+  .check-column > input { display: none; }
+  .tablenav > .actions { display: none; }
+  #acf-img{ display: none; }
+  #acf-img2{ display: none; }
+  #the-list .inline{ display: none; }
+
+// 投稿
+  #category-adder{ display: none; }
+  #tagsdiv-post_tag{ display: none; }
+
+// メディア
+  .media-frame-content{
+    .attachment-actions{ display: none; }
+    .actions{ display: none; }
+  }
+
+// コメント
+  #comments-form{
+    .author a{ display: none; }
+    .row-actions{ display: none; }
+  }
+
+// プロフィール
+  #your-profile{
+    h2{ display: none; }
+    .user-rich-editing-wrap{ display: none; }
+    .user-admin-color-wrap{ display: none; }
+    .user-comment-shortcuts-wrap{ display: none; }
+    .user-admin-bar-front-wrap{ display: none; }
+    .user-language-wrap{ display: none; }
+    .user-first-name-wrap{ display: none; }
+    .user-last-name-wrap{ display: none; }
+    .user-url-wrap{ display: none; }
+  }
+}
+
+
+////////// 管理者権限の表示制限 //////////
+.role-administrator{
+  #acf_213{ display: none; }
+}
+
+
+////////// ダッシュボードウィジェット //////////
+.dashboard_nav{
+  @include media(sl_tp) {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+  }
+  @include media(tl) {
+    display: block;
+  }
+  ul{
+    margin-bottom: 1rem;
+    @include media(sl_tp) {
+      width: 32%;
+    }
+    @include media(tl) {
+      width: 100%;
+    }
+    @include media(pc) {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+    }
+  }
+  li{
+    margin-bottom: 0.6rem;
+    @include media(pc) {
+      width: 49%;
+    }
+  }
+  a{
+    box-sizing: border-box;
+    display: block;
+    padding: 1rem 0 1rem 2rem;
+    width: 100%;
+    border-radius:5px;
+    position: relative;
+    &:before,&:after{
+      display: block;
+      content: '';
+      width: 0.8rem;
+      height: 0.75rem;
+      border: 0;
+      -webkit-transform: rotate(50deg);
+      -o-transform: rotate(50deg);
+      transform: rotate(50deg);
+      position: absolute;
+      top: 0;
+      right: 1.5rem;
+      bottom: 0;
+      margin: auto;
+      @include media(pc) {
+        right: 2.5rem;
+        transition: 0.2s;
+      }
+    }
+    &:before{
+      border-top: solid 2px $clr_c7;
+    }
+    &:after{
+      border-bottom: solid 2px $clr_c7;
+      -webkit-transform: rotate(-50deg);
+      -o-transform: rotate(-50deg);
+      transform: rotate(-50deg);
+    }
+    @include media(pc) {
+      &:hover:before, &:hover:after{
+        right: 1.5rem;
+      }
+    }
+  }
+  .dashicons{
+    position: relative;
+    display: inline-block;
+    width: 1rem;
+    margin: 0 1.5rem 0 0;
+    color: $clr_c7;
+  }
+  p{
+    font-size: 1.6rem;
+    margin: 0;
+    display: inline-block;
+    font-weight: bold;
+    color: $clr_c7;
+  }
+  .dbNav_my a{ background-color: $clr_c3; }
+  .dbNav_db a{ background-color: $clr_m; }
+  .dbNav_post a{ background-color: $clr_s; }
+  .mb{ margin-bottom: 2rem; }
 }

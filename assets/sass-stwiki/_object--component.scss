@@ -37,7 +37,6 @@
 }
 
 ////////// 右矢印(>) //////////
-
 .arrow a{
   position: relative;
   &:before,&:after{
@@ -123,3 +122,105 @@
     repeat: repeat;
   }
 }
+
+
+////////// 入力フォーム //////////
+form{
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgba($clr_c6,0.2);
+  border: 1px solid $clr_c6;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px 0 $clr_c6;
+  padding: 1rem;
+}
+label{
+  width: 100%;
+}
+input[type=text],
+input[type=search],
+input[type=tel],
+input[type=url],
+input[type=email],
+input[type=password],
+input[type=number]{
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  width: 100%;
+  height: 4rem;
+  box-sizing: border-box;
+  line-height: 4rem;
+  border: 1px solid $clr_c6;
+  border-top-color: $clr_c5;
+  border-left-color: $clr_c5;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+input[type=tel],
+input[type=password]{
+  max-width: 40rem;
+}
+textarea{
+  font-size: 1.6rem;
+  padding: 1rem;
+  width: 100%;
+  height: 10rem;
+  box-sizing: border-box;
+  border: 1px solid $clr_c6;
+  border-top-color: $clr_c5;
+  border-left-color: $clr_c5;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+label.check{
+  padding-left: 3rem;
+  position: relative;
+  &:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid $clr_c6;
+    box-sizing: border-box;
+  }
+  input[type=checkbox]{
+    display: none;
+  }
+  input[type=checkbox] + .checkIcon {
+    position: relative;
+    vertical-align: middle;
+  }
+  input[type=checkbox]:checked + .checkIcon {
+    left: 0;
+    color: #00aaff;
+    position: absolute;
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 14px;
+    height: 8px;
+    border-bottom: solid 2px currentColor;
+    border-left: solid 2px currentColor;
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+}
+input[type=submit],
+input[type=reset],
+input[type=button]{
+  cursor: pointer;
+  color: $clr_c7;
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 0 1rem;
+  width: 100%;
+  height: 5rem;
+  box-sizing: border-box;
+  border: 1px solid $clr_c6;
+  border-right-color: $clr_c5;
+  border-bottom-color: $clr_c5;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+input[type=submit]{ background-color: $clr_a3; }
+input[type=reset]{ background-color: $clr_c4; }

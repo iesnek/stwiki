@@ -6,6 +6,8 @@
 ////////// 目次 //////////
 // MMENUの中
 // MW WP Form
+// Google reCaptcha
+// Theme My Login
 
 
 ////////// MMENUの中 //////////
@@ -23,6 +25,9 @@
   margin: 2rem auto 0;
 }
 .mm-search form {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
   background-color: #333;
 }
 .mm-search #searchsubmit {
@@ -42,9 +47,7 @@
 .subNav_fuda a.mm-subopen{ background-color: $clr_a4; }
 .subNav_make a.mm-subopen{ background-color: $clr_a5; }
 
-
-
-////////// MMENUの中その３　タップで閉じる //////////
+// タップで閉じる
 .mm-tapClose{
   display: none;
   opacity: 0;
@@ -73,4 +76,220 @@
   0% { display: none; opacity: 0; }
   1% { display: block; opacity: 0; }
   100% { display: block; opacity: 1; }
+}
+
+
+////////// MW WP Form //////////
+.mw_wp_form form{
+  @include media(sl_tp) {
+    padding: 3rem;
+  }
+}
+.mwwpf{
+  margin-bottom: 2rem;
+  @include media(sl_tp) {
+    margin-bottom: 3rem;
+  }
+  .mwLabel{
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    border-left: 0.5rem solid $clr_c5;
+    box-sizing: border-box;
+    font-weight: bold;
+    span{ color: $clr_a1; }
+  }
+  .inputWrap{
+    display: table;
+    width: 100%;
+    max-width: 40rem;
+    box-sizing: border-box;
+    > div{
+      display: table-cell;
+      width: 50%;
+    }
+    label{
+      display: inline-block;
+      width: 20%;
+      max-width: 4rem;
+      line-height: 4rem;
+    }
+    input{
+      display: inline-block;
+      width: 80%;
+      max-width: 14rem;
+    }
+  }
+  .tel{ max-width: 40rem; }
+}
+.mw_wp_form_confirm{
+  .mwwpf > div{
+    font-size: 1.6rem;
+    padding: 0 1rem;
+    width: 100%;
+    height: 4rem;
+    box-sizing: border-box;
+    background-color: $clr_c7;
+    line-height: 4rem;
+    label{ display: none; }
+  }
+  .backBtn input{
+    margin-top: 1rem;
+    height: 4rem;
+    background-color: $clr_c3;
+  }
+}
+
+
+////////// Google reCaptcha //////////
+.gglcptch{
+  @media only screen and (max-width: 321px) {
+    margin-left: -10px;
+  }
+}
+#commentform .gglcptch{
+  @media only screen and (max-width: 321px) {
+    margin-left: -10px !important;
+  }
+}
+
+////////// Theme My Login //////////
+.article .tml{
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  @include media(sl_tp) {
+    max-width: 450px;
+  }
+  form{
+    @include media(sl_tp) {
+      padding: 5rem;
+    }
+  }
+  input{
+    margin: 0 0 1rem;
+  }
+  .tml-user-login-wrap{
+    margin: 0 0 1.5rem;
+  }
+  .tml-submit-wrap{ margin-top: 2rem; }
+  .tml-rememberme-submit-wrap{
+    margin: 2rem auto 0;
+    .tml-submit-wrap{ margin: 0; }
+  }
+  @include media(sl_tp) {
+    .tml-rememberme-wrap{
+      display: block;
+    }
+    .tml-submit-wrap{
+      display: block;
+      margin: 2rem auto 0;
+      input{ width: 100%; }
+    }
+    .tml-rememberme-submit-wrap{
+      margin: 2rem auto 0;
+      .tml-submit-wrap{ margin: 0; }
+    }
+  }
+  .tml-action-links{
+    display: block;
+    width: 100%;
+    margin: 1rem auto;
+    li{
+      border-right: 0;
+      float: none;
+      margin: 0 0 1rem 0;
+      padding: 0;
+    }
+    a{
+      display: block;
+      padding: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      text-decoration: none;
+      text-align: center;
+      color: $clr_c7;
+      background-color: $clr_c4;
+      @include media(pc) {
+        font-size: 1.8rem;
+        padding: 3rem 0;
+      }
+      &:after{
+        background: none;
+      }
+    }
+    li:first-child a{ background-color: $clr_a1; }
+  }
+  h2{
+    background-color: $clr_c3;
+    color: $clr_c7;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+  h3{
+    margin: 1rem 0;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0 0 0 1rem;
+    border-left: 5px solid $clr_m;
+  }
+  .tml-form-table{ width: 100%; }
+}
+
+
+////////// ダッシュボードウィジェット //////////
+.dashboard_nav{
+  ul{ margin-bottom: 1rem; }
+  li{ margin-bottom: 0.6rem; }
+  a{
+    box-sizing: border-box;
+    display: block;
+    padding: 1rem 0 1rem 2rem;
+    width: 100%;
+    border-radius:5px;
+    position: relative;
+    &:before,&:after{
+      display: block;
+      content: '';
+      width: 0.8rem;
+      height: 0.75rem;
+      border: 0;
+      -webkit-transform: rotate(50deg);
+      -o-transform: rotate(50deg);
+      transform: rotate(50deg);
+      position: absolute;
+      top: 0;
+      right: 1.5rem;
+      bottom: 0;
+      margin: auto;
+    }
+    &:before{
+      border-top: solid 2px $clr_c7;
+    }
+    &:after{
+      border-bottom: solid 2px $clr_c7;
+      -webkit-transform: rotate(-50deg);
+      -o-transform: rotate(-50deg);
+      transform: rotate(-50deg);
+    }
+  }
+  .dashicons{
+    position: relative;
+    display: inline-block;
+    width: 1rem;
+    margin: 0 1.5rem 0 0;
+    color: $clr_c7;
+  }
+  p{
+    font-size: 1.6rem;
+    margin: 0 !important;
+    display: inline-block;
+    font-weight: bold;
+    color: $clr_c7;
+  }
+  .dbNav_my a{ background-color: $clr_c3; }
+  .dbNav_db a{ background-color: $clr_m; }
+  .dbNav_post a{ background-color: $clr_s; }
+  .mb{ margin-bottom: 2rem; }
 }

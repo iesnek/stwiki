@@ -1,11 +1,11 @@
 @charset "utf-8";
 
 /*!
- * Theme Name: sentora-z
- * Description: sentora-z theme by kitano. 
- * Theme URI: http://sentora-z.com
+ * Theme Name: sentora-wiki
+ * Description: sentora-wiki theme by kitano. 
+ * Theme URI: http://sentora-wiki.com
  * Author: kitano
- * Author URI: http://sentora-z.com
+ * Author URI: http://sentora-wiki.com
  * Version: 1.0
 */
 
@@ -19,6 +19,7 @@
 @import "plugin--project";
 
 @import "object--component";
+@import "object--editor";
 @import "object--project-common";
 @import "object--project-home";
 @import "object--project-archive";

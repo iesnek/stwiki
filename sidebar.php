@@ -28,10 +28,14 @@
   <p class="l-block">『戦国の虎z データベース&攻略wiki』 は<br>誰でも編集できる情報共有サイトです</p>
 </header><!-- .subHead -->
 <div class="l-block subHead_btn subHead_write arrow">
-  <a href=""><svg><title>情報を編集する</title><use xlink:href="#write"/></svg>情報を編集する</a>
+  <a href="<?php echo get_admin_url(); ?>"><svg><title>情報を編集する</title><use xlink:href="#write"/></svg>情報を編集する</a>
 </div>
 <div class="l-block subHead_btn subHead_login arrow">
-  <a href=""><svg><title>ログイン</title><use xlink:href="#login"/></svg>ログイン</a>
+  <?php if( is_user_logged_in() ): ?>
+    <a href="<?php echo get_page_link('210'); ?>"><svg><title>マイページ</title><use xlink:href="#my"/></svg><p>マイページ</p></a>
+  <?php else: ?>
+    <a href="<?php echo get_page_link('204'); ?>"><svg><title>ログイン</title><use xlink:href="#login"/></svg><p>ログイン</p></a>
+  <?php endif; ?>
 </div>
 <div class="l-block mm-search">
   <?php get_search_form(); ?>
@@ -127,10 +131,9 @@
     <li><a href="<?php echo home_url('/'); ?>">ホーム</a></li>
     <li><a href="<?php echo get_page_link(145); ?>">本サイトについて</a></li>
     <li><a href="<?php echo get_page_link(147); ?>">利用規約</a></li>
-    <li><a href="<?php echo get_page_link(149); ?>">免責事項</a></li>
     <li><a href="<?php echo get_page_link(151); ?>">プライバシーポリシー</a></li>
     <li><a href="<?php echo get_page_link(154); ?>">お問い合わせ</a></li>
-    <li><a href="http://sentora.jp">戦国の虎z 公式サイト</a></li>
+    <li><a target="_blank" href="http://sentora.jp">戦国の虎z 公式サイト</a></li>
   </ul><!-- .subNav -->
   <?php endif; endif; ?>
 </nav><!-- .subNav_wrap -->
