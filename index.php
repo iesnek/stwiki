@@ -212,7 +212,7 @@
 <section class="dbItems">
   <a href="<?php the_permalink(); ?>" title="<?php echo $rarity . '&nbsp;'; the_title(); ?>">
     <div class="itemWrap">
-      <div class="itemImg matchHeight">
+      <div class="itemImg">
       <?php if($img2url): ?>
         <img src="<?php echo $img2url[0]; ?>" alt="<?php the_title(); ?>">
       <?php elseif($imgurl): ?>
@@ -235,29 +235,31 @@
         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/noimg-item.png" alt="">
       <?php endif; endif; ?>
       </div>
-      <div class="itemMeta matchHeight">
-        <h3 class="itemTitle"><?php echo $rarity . '&nbsp;'; the_title(); ?></h3>
-        <div class="itemSpec_wrap">
-          <ul class="itemSpec">
-            <li class="itemCost"><?php if ($terms = get_the_terms($post->ID, 'cost')) { foreach ( $terms as $term ) { echo esc_html($term->name); }} else { echo '-'; } ?></li>
-            <li class="itemStatus u-bd0">
-              <ul class="itemStatus_n">
-                <li><?php if($attack_n || $attack_n=='0'){ echo $attack_n; } else{ echo '-'; } ?></li>
-                <li><?php if($defence_n || $defence_n=='0'){ echo $defence_n; } else{ echo '-'; } ?></li>
-                <li><?php if($speed_n || $speed_n=='0'){ echo $speed_n; } else{ echo '-'; } ?></li>
-                <li><?php if($mental_n || $mental_n=='0'){ echo $mental_n; } else{ echo '-'; } ?></li>
-                <li><?php if($total_n || $total_n=='0'){ echo $total_n; } else{ echo '-'; } ?></li>
-              </ul>
-              <ul class="itemStatus_l">
-                <li><?php if($attack_l || $attack_l=='0'){ echo $attack_l; } elseif($attack_n && $limit_break){ echo round($attack_n * 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if($defence_l || $defence_l=='0'){ echo $defence_l; } elseif($defence_n && $limit_break){ echo round($defence_n * 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if($speed_l || $speed_l=='0'){ echo $speed_l; } elseif($speed_n && $limit_break){ echo round($speed_n * 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if($mental_l || $mental_l=='0'){ echo $mental_l; } elseif($mental_n && $limit_break){ echo round($mental_n * 1.1,0); } else{ echo '-'; } ?></li>
-                <li><?php if(($attack_l || $attack_l=='0') && ($defence_l || $defence_l=='0') && ($speed_l || $speed_l=='0') && ($mental_l || $mental_l=='0')){ echo $attack_l + $defence_l + $speed_l + $mental_l; } elseif($total_n && $limit_break){ echo round($total_n * 1.1,0); } else{ echo '-'; } ?></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!-- .itemSpec_wrap -->
+      <div class="itemMeta">
+        <div class="itemMeta_wrap">
+          <h3 class="itemTitle"><?php echo $rarity . '&nbsp;'; the_title(); ?></h3>
+          <div class="itemSpec_wrap">
+            <ul class="itemSpec">
+              <li class="itemCost"><?php if ($terms = get_the_terms($post->ID, 'cost')) { foreach ( $terms as $term ) { echo esc_html($term->name); }} else { echo '-'; } ?></li>
+              <li class="itemStatus u-bd0">
+                <ul class="itemStatus_n">
+                  <li><?php if($attack_n || $attack_n=='0'){ echo $attack_n; } else{ echo '-'; } ?></li>
+                  <li><?php if($defence_n || $defence_n=='0'){ echo $defence_n; } else{ echo '-'; } ?></li>
+                  <li><?php if($speed_n || $speed_n=='0'){ echo $speed_n; } else{ echo '-'; } ?></li>
+                  <li><?php if($mental_n || $mental_n=='0'){ echo $mental_n; } else{ echo '-'; } ?></li>
+                  <li><?php if($total_n || $total_n=='0'){ echo $total_n; } else{ echo '-'; } ?></li>
+                </ul>
+                <ul class="itemStatus_l">
+                  <li><?php if($attack_l || $attack_l=='0'){ echo $attack_l; } elseif($attack_n && $limit_break){ echo round($attack_n * 1.1,0); } else{ echo '-'; } ?></li>
+                  <li><?php if($defence_l || $defence_l=='0'){ echo $defence_l; } elseif($defence_n && $limit_break){ echo round($defence_n * 1.1,0); } else{ echo '-'; } ?></li>
+                  <li><?php if($speed_l || $speed_l=='0'){ echo $speed_l; } elseif($speed_n && $limit_break){ echo round($speed_n * 1.1,0); } else{ echo '-'; } ?></li>
+                  <li><?php if($mental_l || $mental_l=='0'){ echo $mental_l; } elseif($mental_n && $limit_break){ echo round($mental_n * 1.1,0); } else{ echo '-'; } ?></li>
+                  <li><?php if(($attack_l || $attack_l=='0') && ($defence_l || $defence_l=='0') && ($speed_l || $speed_l=='0') && ($mental_l || $mental_l=='0')){ echo $attack_l + $defence_l + $speed_l + $mental_l; } elseif($total_n && $limit_break){ echo round($total_n * 1.1,0); } else{ echo '-'; } ?></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- .itemSpec_wrap -->
+        </div><!-- .itemMeta_wrap -->
       </div><!-- .itemMeta -->
     </div><!-- .itemWrap -->
   </a>

@@ -4,7 +4,7 @@
 <main id="main" class="l-main">
 
 <section class="l-section">
-  <h2 class="headline">うんこうんこちーんちん</h2><!-- .headline -->
+  <h2 class="headline">新着情報</h2><!-- .headline -->
   <div class="news">
     <?php
       global $post;

@@ -30,8 +30,13 @@
       box-sizing: border-box;
       width: 12%;
       text-align: center;
+      -webkit-flex-grow:1;
+      flex-grow:1;
       @include media(sl_tp) {
         width: 8%;
+      }
+      &:nth-last-child(2){
+        border-right: 3px double $clr_c7;
       }
       a{
         color: $clr_c7;
@@ -39,17 +44,16 @@
       }
     }
     .img{
-      width: 28%;
+      width: 75px;
       border-left: 1px solid $clr_c7;
       @include media(sl_tp) {
-        width: 20%;
+        width: 140px;
       }
     }
     .name{
       display: none;
       @include media(sl_tp) {
         display: block;
-        width: 32%;
       }
     }
   }
@@ -127,32 +131,38 @@
   background-color: $clr_c7;
 }
 .itemImg{
-  width: 28%;
-  height: auto;
-  border-collapse: collapse;
+  width: 75px;
+  height: 75px;
   @include media(sl_tp) {
-    width: 20%;
+    width: 140px;
+    height: 140px;
   }
 }
 .itemMeta{
-  width: 72%;
+  -webkit-flex-grow:1;
+  flex-grow:1;
   border-left: 1px solid $clr_c5;
+  height: 75px;
   @include media(sl_tp) {
-    width: 80%;
+    height: 140px;
+  }
+}
+.itemMeta_wrap{
+  @include media(sl_tp) {
+    width: 100%;
     display: table;
   }
 }
 .itemTitle{
-  height: 33.333%;
+  height: 25px;
   border-bottom: 1px solid $clr_c5;
-  border-collapse: collapse;
-  box-sizing: border-box;
   font-weight: bold;
-  padding: 0.5rem 0 0 1rem;
+  padding-left: 1rem;
+  line-height: 25px;
   @include media(sl_tp) {
     width: 40%;
     display: table-cell;
-    height: 100%;
+    height: 140px;
     border-right: 1px solid $clr_c5;
     border-bottom: 0;
     padding: 0;
@@ -162,11 +172,11 @@
 }
 .itemSpec_wrap{
   width: 100%;
-  height: 66.666%;
+  height: 50px;
   @include media(sl_tp) {
     display: table-cell;
     width: 60%;
-    height: 100%;
+    height: 140px;
   }
 }
 .itemSpec{
@@ -182,7 +192,6 @@
   height: 100%;
   vertical-align: middle;
   border-right: 1px solid $clr_c5;
-  border-collapse: collapse;
   box-sizing: border-box;
 }
 .itemStatus{
@@ -198,10 +207,15 @@
     width: 20%;
     height: 100%;
     border-right: 1px solid $clr_c5;
-    border-collapse: collapse;
-    text-align: center;
+      text-align: center;
     vertical-align: middle;
-    &:last-child{ border:0; }
+    &:last-child{
+      font-weight: bold;
+      border:0;
+    }
+    &:nth-last-child(2){
+      border-right: 3px double $clr_c5;
+    }
   }
 }
 .itemStatus_l{
